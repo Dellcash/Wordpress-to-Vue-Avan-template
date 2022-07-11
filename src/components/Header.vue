@@ -60,7 +60,7 @@ const socials = ref(['i-carbon-media-cast', 'i-carbon-logo-linkedin', 'i-carbon-
           </div>
 
           <div relative>
-            <div flex items-end @mouseover="main.servicesBtn = true">
+            <div class="j1e5hu" @mouseover="main.servicesBtn = true">
               <button class="m9zpfl">خدمات</button>
               <div class="o2mnln" />
             </div>
@@ -335,6 +335,11 @@ const socials = ref(['i-carbon-media-cast', 'i-carbon-logo-linkedin', 'i-carbon-
 .ndjxbp:hover {
   --un-text-opacity: 1;
   color: rgba(242, 101, 34, var(--un-text-opacity));
+}
+
+.j1e5hu {
+  display: flex;
+  align-items: flex-end;
 }
 
 .m9zpfl {
