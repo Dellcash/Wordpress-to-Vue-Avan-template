@@ -11,5 +11,6 @@
 
 * {
   font-family: "IRANSans";
+  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
 }
 </style>

@@ -25,7 +25,7 @@ export default defineConfig({
       extensions: ['vue', 'js']
     }),
     AutoImport({
-      imports: ['vue', 'vue-router']
+      imports: ['vue', 'vue-router', 'pinia']
     })
   ],
   resolve: {

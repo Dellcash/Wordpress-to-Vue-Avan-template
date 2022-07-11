@@ -1,29 +1,30 @@
-# avan
+<div id="top"></div>
+<!--
+*** Thanks for checking out the Best-README-Template. If you have a suggestion
+*** Don't forget to give the project a star!
+-->
 
-Vue3 and Unocss boilerplate.
+<br />
+<div align="center">
+  <a href="https://theme45.mywebzi.ir/">
+    <img src="./src/assets/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
-## Recommended IDE Setup
+  <h3 align="center">HANA wordpress-to-vue</h3>
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [Unocss](https://marketplace.visualstudio.com/items?itemName=unocss) + [iconify](https://marketplace.visualstudio.com/items?itemName=iconify)
+  <p align="center">
+   این قالب فروشگاهی و وبلاگی وردپرس 'آوان' بود که بوسیله 
+    <a href="https://uno.antfu.me/">ٔUnocss</a>
+    درحال کدنویسی مجددش هستم به ویوو‌جی‌اس.
+    <br />
+    <a href="#">دمو پروژه من</a>
+    ·
+    <a href="#">قالب آوان</a>
+  </p>
+  </p>
+  
+  <br />
 
-## Customize configuration
+<!-- ![js to vue](./src/assets/images/screen.png) -->
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+</div>

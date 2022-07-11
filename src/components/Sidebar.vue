@@ -1,60 +1,7 @@
 <script setup>
-defineProps({
-  toggled: Boolean
-})
-const servicesBtn = ref(false)
-const links = ref({
-  part1: [
-    {
-      title: 'خانه',
-      link: '/'
-    },
-    {
-      title: 'درباره ما',
-      link: '#'
-    },
-    {
-      title: 'ما چگونه کار می‌کنیم',
-      link: '#'
-    }
-  ],
-  services: [
-    {
-      title: 'مشاوره عالی',
-      link: '/'
-    },
-    {
-      title: 'مشاغل جهانی',
-      link: '#'
-    },
-    {
-      title: 'حسابرسی و بیمه',
-      link: '#'
-    },
-    {
-      title: 'مالیات و سهام',
-      link: '#'
-    },
-    {
-      title: 'اوراق قرضه وکالاها',
-      link: '#'
-    },
-  ],
-  part2: [
-    {
-      title: 'فروشگاه',
-      link: '#'
-    },
-    {
-      title: 'وبلاگ',
-      link: '#'
-    },
-    {
-      title: 'تماس',
-      link: '#'
-    }
-  ]
-})
+import { useMain } from '../stores/main'
+
+const main = useMain()
 
 const enter = (el) => {
   el.style.height = 'auto'
@@ -81,20 +28,20 @@ const leave = (el) => {
 <template>
   <aside>
     <XyzTransition>
-      <div class="w1msll" xyz="fade" v-if="toggled" @click="toggled = false"></div>
+      <div class="w1msll" xyz="fade" v-if="main.toggled" @click="main.toggled = false"></div>
     </XyzTransition>
 
     <XyzTransition xyz="flip-right origin-right">
-      <div class="ir78cg" v-if="toggled">
+      <div class="ir78cg" v-if="main.toggled">
 
         <div class="m9c7sb">
           <img src="../assets/logo.png" alt="logo" class="p4im6e">
-          <div class="h2oequ" xyz="flip-up-5 delay-2.5 duration-4" @click="toggled = false" />
+          <div class="h2oequ" xyz="flip-up-5 delay-2.5 duration-4" @click="main.toggled = false" />
         </div>
 
         <div space-y-4>
           <div class="ikwtbb">
-            <RouterLink :to="link.link" v-for="link in links.part1" :key="link" class="rhht62">{{
+            <RouterLink :to="link.link" v-for="link in main.links.part1" :key="link" class="rhht62">{{
                 link.title
             }}
             </RouterLink>
@@ -104,18 +51,18 @@ const leave = (el) => {
           <div pr2>
             <div class="p7v3cs">
               <div class="wieavw">
-                <div class="n4ilpk" @click="servicesBtn = !servicesBtn"
-                  :class="servicesBtn == true ? '' : '-rotate-90'" />
+                <div class="n4ilpk" @click="main.servicesBtn = !main.servicesBtn"
+                  :class="main.servicesBtn == true ? '' : '-rotate-90'" />
               </div>
               <div class="vhazg5">
-                <div class="a38mgg" @click="servicesBtn = !servicesBtn" />
+                <div class="a38mgg" @click="main.servicesBtn = !main.servicesBtn" />
               </div>
-              <h2 mr2>خدمات</h2>
+              <button class="xth5mc">خدمات</button>
             </div>
 
             <Transition name="expand" @enter="enter" @after-enter="afterEnter" @leave="leave">
-              <div v-if="servicesBtn" mr-10 flex flex-col>
-                <RouterLink :to="service.link" v-for="service in links.services" :key="service" class="m1bmsc">{{
+              <div v-if="main.servicesBtn" mr-10 flex flex-col>
+                <RouterLink :to="service.link" v-for="service in main.links.services" :key="service" class="m1bmsc">{{
                     service.title
                 }}
                 </RouterLink>
@@ -124,7 +71,7 @@ const leave = (el) => {
           </div>
 
           <div class="ikwtbb">
-            <RouterLink :to="link.link" v-for="link in links.part2" :key="link" class="rhht62">{{ link.title }}
+            <RouterLink :to="link.link" v-for="link in main.links.part2" :key="link" class="rhht62">{{ link.title }}
             </RouterLink>
           </div>
         </div>
@@ -209,6 +156,7 @@ const leave = (el) => {
 
 .rhht62 {
   transition-duration: 250ms;
+  font-size: 0.75rem
 }
 
 .rhht62:hover {
@@ -223,6 +171,8 @@ const leave = (el) => {
 .wieavw {
   border-width: 1px;
   border-style: solid;
+  --un-border-opacity: 1;
+  border-color: rgba(75, 85, 99, var(--un-border-opacity));
   border-radius: 9999px;
 }
 
@@ -242,7 +192,7 @@ const leave = (el) => {
   width: 1em;
   height: 1em;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   transition-duration: 250ms;
 }
 
@@ -264,12 +214,19 @@ const leave = (el) => {
   width: 1em;
   height: 1em;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
+}
+
+.xth5mc {
+  margin-right: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
 }
 
 .m1bmsc {
   margin-top: 1rem;
   transition-duration: 250ms;
+  font-size: 0.75rem
 }
 
 .m1bmsc:first-child {
@@ -293,15 +250,7 @@ const leave = (el) => {
   margin-bottom: calc(1rem * var(--un-space-y-reverse));
 }
 
-.rhht62 {
-  transition-duration: 250ms;
-}
-
-.rhht62:hover {
-  color: rgba(156, 163, 175, 1);
-}
-
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .ir78cg {
     width: 300px;
   }
