@@ -26,7 +26,7 @@ const leave = (el) => {
 </script>
 
 <template>
-  <aside>
+  <aside relative z-20>
     <XyzTransition>
       <div class="w1msll" xyz="fade" v-if="main.toggled" @click="main.toggled = false"></div>
     </XyzTransition>

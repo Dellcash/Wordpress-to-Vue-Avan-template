@@ -76,7 +76,7 @@ const socials = ref(['i-carbon-media-cast', 'i-carbon-logo-linkedin', 'i-carbon-
             </XyzTransition>
           </div>
 
-          <div class="space-x-5">
+          <div space-x-5>
             <button v-for="link in main.links.part2" :key="link" first:mx5>
               <RouterLink :to="link.link" class="ndjxbp">
                 {{
@@ -394,6 +394,7 @@ const socials = ref(['i-carbon-media-cast', 'i-carbon-logo-linkedin', 'i-carbon-
   --un-shadow: var(--un-shadow-inset) 0 25px 50px -12px var(--un-shadow-color, rgba(0, 0, 0, 0.25));
   box-shadow: var(--un-ring-offset-shadow), var(--un-ring-shadow),
     var(--un-shadow);
+  z-index: 30;
 }
 
 .e1q20h {
