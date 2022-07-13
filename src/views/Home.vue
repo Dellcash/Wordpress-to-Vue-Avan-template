@@ -53,14 +53,13 @@ const services = ref([
         <div class="ykw0m7">
           <div class="uvai6g">
             <p text-xs>ما که هستیم</p>
-            <h2 class="ukzif5"><strong class=":uno: text-2xl tracking-wider xl:tracking-tight">ماموریت ما،
+            <h2 class="ukzif5"><strong class="mwsi2a">ماموریت ما،
                 ارزشها و
                 شعور</strong></h2>
-            <p class=":uno: text-xs md:leading-5">{{ description }} {{ description }}</p>
-            <div class=":uno: flex items-start justify-center mt3 xl:items-end xl:flex-col xl:mt10 xl:relative">
-              <img src="../assets/sign.png" alt="sing" class=":uno: w-15 xl:absolute xl:-top-3">
-              <h6 class=":uno: text-xs tracking-tighter mr2 leading-1 xl:ml10"><span
-                  class=":uno: hidden xl:block text-xs">نام</span> <br>موسس
+            <p class="osubnz">{{ description }} {{ description }}</p>
+            <div class="hernb3">
+              <img src="../assets/sign.png" alt="sing" class="gh1tfk">
+              <h6 class="o62h8i"><span class="i8ytmr">نام</span> <br>موسس
                 و مدیرعامل</h6>
             </div>
           </div>
@@ -184,7 +183,7 @@ const services = ref([
   font-size: 10px;
 }
 
-.uno-62oh8i {
+.o62h8i {
   margin-right: 0.5rem;
   font-size: 0.75rem;
   line-height: 1rem;
@@ -192,14 +191,14 @@ const services = ref([
   letter-spacing: -0.05em;
 }
 
-.uno-hernb3 {
+.hernb3 {
   margin-top: 0.75rem;
   display: flex;
   align-items: flex-start;
   justify-content: center;
 }
 
-.uno-8iytmr {
+.i8ytmr {
   display: none;
   font-size: 0.75rem;
   line-height: 1rem;
@@ -210,7 +209,7 @@ const services = ref([
   padding: 0.75rem;
 }
 
-.uno-gh1tfk {
+.gh1tfk {
   width: 3.75rem;
 }
 
@@ -238,13 +237,13 @@ const services = ref([
   color: rgba(255, 255, 255, var(--un-text-opacity));
 }
 
-.uno-mwsi2a {
+.mwsi2a {
   font-size: 1.5rem;
   line-height: 2rem;
   letter-spacing: 0.05em;
 }
 
-.uno-osubnz {
+.osubnz {
   font-size: 0.75rem;
   line-height: 1rem;
 }
@@ -368,7 +367,7 @@ const services = ref([
     padding-top: 0.75rem;
   }
 
-  .uno-osubnz {
+  .osubnz {
     line-height: 1.25rem;
   }
 
@@ -436,12 +435,12 @@ const services = ref([
     margin-bottom: 1.25rem;
   }
 
-  .uno-gh1tfk {
+  .gh1tfk {
     position: absolute;
     top: -0.75rem;
   }
 
-  .uno-hernb3 {
+  .hernb3 {
     position: relative;
     margin-top: 2.5rem;
     flex-direction: column;
@@ -452,11 +451,11 @@ const services = ref([
     margin-top: 11.25rem;
   }
 
-  .uno-62oh8i {
+  .o62h8i {
     margin-left: 2.5rem;
   }
 
-  .uno-8iytmr {
+  .i8ytmr {
     display: block;
   }
 
@@ -473,7 +472,7 @@ const services = ref([
     padding-bottom: 0rem;
   }
 
-  .uno-mwsi2a {
+  .mwsi2a {
     letter-spacing: -0.025em;
   }
 }
