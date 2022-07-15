@@ -1,6 +1,13 @@
 <script setup>
-const description = ref('لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.')
+import { Carousel, Slide } from 'vue3-carousel';
+import 'vue3-carousel/dist/carousel.css';
+import team1 from '../assets/ppl1.jpg'
+import team2 from '../assets/ppl2.jpg'
+import team3 from '../assets/ppl3.jpg'
+import team4 from '../assets/ppl4.jpg'
+import team5 from '../assets/ppl5.jpg'
 
+const description = ref('لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.')
 const services = ref({
   part1: [
     {
@@ -22,6 +29,7 @@ const services = ref({
   ],
   part2: ['ممیزی و تضمین', 'معاملات و سهام', 'مشاوره مالی', 'برنامه ریزی استراتژیک', 'اوراق قرضه و کالاها', 'پیش بینی های مالی']
 })
+const teams = ref([team1, team2, team3, team4, team5])
 </script>
 
 <template>
@@ -94,6 +102,31 @@ const services = ref({
               <h6 class="l7f4sm">ادامه مطلب</h6>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="t0x6on">
+      <div class="l4eydi">
+        <div class="p94l8e">
+          <h6 text-xs>پروژه‌های ما</h6>
+          <div class="gvcdfs">
+            <h4 class="s8b33g !tracking-2px">ما رهبران هستیم</h4>
+            <h6 class="s8gdus">همه ی خدمات</h6>
+          </div>
+        </div>
+      </div>
+
+      <Carousel :autoplay="2000" :wrap-around="true" :items-to-show="2.5" class="b3wgh3">
+        <Slide v-for="team in teams" :key="team">
+          <img :src="team" alt="team members" class="idkkjn">
+        </Slide>
+      </Carousel>
+
+      <div class="o4o4ot">
+        <div class="f6t99k">
+          <p class="pqkind">{{ description }}</p>
+          <h6 class="s8gdus t9yvn3">دیدن جزئیات</h6>
         </div>
       </div>
     </section>
@@ -361,6 +394,41 @@ const services = ref({
   cursor: pointer;
 }
 
+.t0x6on {
+  width: 100%;
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+}
+
+.b3wgh3 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+}
+
+.idkkjn {
+  width: 100%;
+  height: 15rem;
+  object-fit: cover;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+.o4o4ot {
+  padding: 0.75rem;
+}
+
+.pqkind {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  line-height: 1.5rem;
+}
+
+.t9yvn3 {
+  margin-top: 1rem;
+  text-align: center;
+}
+
 @media (min-width: 640px) {
   .b5kzqy {
     width: 430px;
@@ -396,6 +464,15 @@ const services = ref({
 
   .mflud3 {
     width: 420px;
+  }
+
+  .o4o4ot {
+    display: flex;
+    justify-content: center;
+  }
+
+  .f6t99k {
+    width: 500px;
   }
 }
 
@@ -528,6 +605,10 @@ const services = ref({
     margin-left: 0.25rem;
     margin-right: 0.25rem;
     width: 48%;
+  }
+
+  .f6t99k {
+    text-align: center;
   }
 }
 
@@ -668,6 +749,11 @@ const services = ref({
 
   .mflud3:nth-child(6) {
     margin-top: -4rem;
+  }
+
+  .f6t99k {
+    width: 700px;
+    text-align: right;
   }
 }
 </style>
