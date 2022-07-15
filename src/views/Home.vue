@@ -1,24 +1,27 @@
 <script setup>
 const description = ref('لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.')
 
-const services = ref([
-  {
-    icon: 'i-carbon-money',
-    title: 'بودجه دوستانه'
-  },
-  {
-    icon: 'i-carbon-model-alt',
-    title: 'ایده های ارزشمند'
-  },
-  {
-    icon: 'i-carbon-user-service-desk',
-    title: 'خدمات باکیفیت'
-  },
-  {
-    icon: 'i-carbon-headset',
-    title: 'پشتیبانی ۲۴/۷'
-  }
-])
+const services = ref({
+  part1: [
+    {
+      icon: 'i-carbon-money',
+      title: 'بودجه دوستانه'
+    },
+    {
+      icon: 'i-carbon-model-alt',
+      title: 'ایده های ارزشمند'
+    },
+    {
+      icon: 'i-carbon-user-service-desk',
+      title: 'خدمات باکیفیت'
+    },
+    {
+      icon: 'i-carbon-headset',
+      title: 'پشتیبانی ۲۴/۷'
+    }
+  ],
+  part2: ['ممیزی و تضمین', 'معاملات و سهام', 'مشاوره مالی', 'برنامه ریزی استراتژیک', 'اوراق قرضه و کالاها', 'پیش بینی های مالی']
+})
 </script>
 
 <template>
@@ -37,7 +40,7 @@ const services = ref([
 
         <div class="c22jz4">
           <div class="qvepdg">
-            <div v-for="service in services" :key="service" class="b5kzqy">
+            <div v-for="service in services.part1" :key="service" class="b5kzqy">
               <div :class="service.icon" class="tr0gf4" />
               <h6 class="e4pavm">{{ service.title }}</h6>
               <p class="r8h0aq">{{ description }}</p>
@@ -61,6 +64,34 @@ const services = ref([
               <img src="../assets/sign.png" alt="sing" class="gh1tfk">
               <h6 class="o62h8i"><span class="i8ytmr">نام</span> <br>موسس
                 و مدیرعامل</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gsjd7h">
+      <div class="fsswvy">
+        <div class="bwup6o">
+          <div class="l4eydi">
+            <div class="p94l8e">
+              <h6 text-xs>خدمات ما</h6>
+              <div class="gvcdfs">
+                <h4 class="s8b33g">آنچه را برای شما به ارمغان می آوریم
+                </h4>
+                <h6 class="s8gdus">
+                  همه ی
+                  خدمات</h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="mp82t3">
+            <div v-for="service in services.part2" :key="service" class="mflud3">
+              <h3><strong text-sm>{{ service }}</strong></h3>
+              <p class="x70p31">{{ description }}</p>
+
+              <h6 class="l7f4sm">ادامه مطلب</h6>
             </div>
           </div>
         </div>
@@ -253,6 +284,83 @@ const services = ref([
   margin-bottom: 0.5rem;
 }
 
+.gsjd7h {
+  --un-bg-opacity: 1;
+  background-color: rgba(229, 238, 246, var(--un-bg-opacity));
+  padding-bottom: 2.5rem;
+}
+
+.p94l8e {
+  padding: 0.75rem;
+}
+
+.gvcdfs {
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.s8b33g {
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+
+.s8gdus {
+  cursor: pointer;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  letter-spacing: -0.05em;
+  --un-text-opacity: 1;
+  color: rgba(231, 76, 60, var(--un-text-opacity));
+  transition-duration: 250ms;
+}
+
+.s8gdus:hover {
+  --un-text-opacity: 1;
+  color: rgba(0, 57, 122, var(--un-text-opacity));
+}
+
+.mp82t3 {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding-left: 1.75rem;
+  padding-right: 1.75rem;
+}
+
+.mflud3 {
+  margin-top: 0.5rem;
+  border-width: 1px;
+  border-style: solid;
+  --un-border-opacity: 1;
+  border-color: rgba(209, 213, 219, var(--un-border-opacity));
+  --un-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, var(--un-bg-opacity));
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.x70p31 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.l7f4sm {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  --un-text-opacity: 1;
+  color: rgba(231, 76, 60, var(--un-text-opacity));
+  cursor: pointer;
+}
+
 @media (min-width: 640px) {
   .b5kzqy {
     width: 430px;
@@ -265,6 +373,29 @@ const services = ref([
 
   .uvai6g {
     padding-top: 2rem;
+  }
+
+  .l4eydi {
+    display: flex;
+    justify-content: center;
+  }
+
+  .p94l8e {
+    width: 500px;
+  }
+
+  .gvcdfs {
+    align-items: flex-start;
+  }
+
+  .s8b33g {
+    width: 70%;
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .mflud3 {
+    width: 420px;
   }
 }
 
@@ -371,6 +502,33 @@ const services = ref([
     line-height: 1.25rem;
   }
 
+  .fsswvy {
+    display: flex;
+    justify-content: center;
+  }
+
+  .bwup6o {
+    width: 768px;
+  }
+
+  .p94l8e {
+    width: 100%;
+    padding: 1.75rem;
+  }
+
+  .gvcdfs {
+    align-items: center;
+  }
+
+  .mp82t3 {
+    flex-direction: row;
+  }
+
+  .mflud3 {
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+    width: 48%;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -384,6 +542,11 @@ const services = ref([
 
   .r8h0aq {
     font-size: 12px;
+  }
+
+  .mp82t3 {
+    padding-left: 0rem;
+    padding-right: 0rem;
   }
 }
 
@@ -474,6 +637,37 @@ const services = ref([
 
   .mwsi2a {
     letter-spacing: -0.025em;
+  }
+
+  .bwup6o {
+    width: 100%;
+  }
+
+  .p94l8e {
+    width: 100%;
+    padding-bottom: 0.5rem;
+  }
+
+  .mp82t3 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-top: 0;
+  }
+
+  .mflud3 {
+    width: 32%;
+  }
+
+  .mflud3:nth-child(2) {
+    margin-top: 5rem;
+  }
+
+  .mflud3:nth-child(4) {
+    margin-top: -4rem;
+  }
+
+  .mflud3:nth-child(6) {
+    margin-top: -4rem;
   }
 }
 </style>
