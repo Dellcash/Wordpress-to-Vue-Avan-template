@@ -47,7 +47,7 @@ const validation = () => {
     form.usernameErr = ''
   }
   if (form.email === '') {
-    form.emailErr = 'پست الکترونیک خود را وارد کنید!'
+    form.emailErr = 'ایمیل خود را وارد کنید!'
   } else {
     form.emailErr = ''
   }
@@ -73,7 +73,7 @@ const validation = () => {
 
 <template>
   <main>
-    <!-- <section class="d12e0s">
+    <section class="d12e0s">
       <div class="m09a1j">
         <div class="e3nwjj">
           <img src="../assets/service_man.png" alt="service man" class="b7flb2">
@@ -95,9 +95,9 @@ const validation = () => {
           </div>
         </div>
       </div>
-    </section> -->
+    </section>
 
-    <!-- <section class="n23zng">
+    <section class="n23zng">
       <div class="hgdohl">
         <img src="../assets/corporation.jpg" alt="corporation" class="t09agt">
         <div class="ykw0m7">
@@ -115,9 +115,9 @@ const validation = () => {
           </div>
         </div>
       </div>
-    </section> -->
+    </section>
 
-    <!-- <section class="gsjd7h">
+    <section class="gsjd7h">
       <div class="fsswvy">
         <div class="bwup6o">
           <div class="l4eydi">
@@ -143,9 +143,9 @@ const validation = () => {
           </div>
         </div>
       </div>
-    </section> -->
+    </section>
 
-    <!-- <section class="t0x6on">
+    <section class="t0x6on">
       <div class="l4eydi">
         <div class="p94l8e">
           <h6 text-xs>پروژه‌های ما</h6>
@@ -168,49 +168,45 @@ const validation = () => {
           <h6 class="s8gdus t9yvn3">دیدن جزئیات</h6>
         </div>
       </div>
-    </section> -->
+    </section>
 
-    <section class="n5vidf p3 py10 flex justify-center">
-      <div class="max-w-420px">
-        <div text-white space-y3>
-          <h1 class="s8b33g !tracking-2px ">درخواست تماس</h1>
+    <section class="n5vidf cwe4jh">
+      <div class="dcnsog">
+        <div class="h36qhs">
+          <h1 class="s8b33g !tracking-2px">درخواست تماس</h1>
           <p text-xs>{{ description }}</p>
         </div>
 
-        <form @submit.prevent="validation" class="mt5">
-          <div class="flex">
+        <form @submit.prevent="validation" class="unn7x1">
+          <div flex>
             <div class="space-y-2.8">
               <div>
-                <input v-model="form.username" type="text" placeholder="نام *"
-                  class="bg-gray/80 text-xs text-white p1.5 outline-none placeholder-white">
-                <XyzTransition mode="out-in" xyz="fade right">
-                  <p v-if="form.usernameErr" class="text-xs text-red mt1 -tracking-0.5px">{{ form.usernameErr }}</p>
+                <input v-model="form.username" type="text" placeholder="نام *" class="r35kkr">
+                <XyzTransition xyz="fade right">
+                  <p v-if="form.usernameErr" class="b1v8d3">{{ form.usernameErr }}</p>
                 </XyzTransition>
               </div>
               <div>
-                <input v-model="form.email" type="email" placeholder="پست الکترونیک *"
-                  class="bg-gray/80 text-xs text-white p1.5 outline-none placeholder-white">
-                <XyzTransition mode="out-in" xyz="fade right">
-                  <p v-if="form.emailErr" class="text-xs text-red mt1 -tracking-0.5px">{{ form.emailErr }}</p>
+                <input v-model="form.email" type="email" placeholder="پست الکترونیک *" class="r35kkr">
+                <XyzTransition xyz="fade right">
+                  <p v-if="form.emailErr" class="b1v8d3">{{ form.emailErr }}</p>
                 </XyzTransition>
               </div>
               <div>
-                <input v-model="form.message" type="text" placeholder="موضوع"
-                  class="bg-gray/80 text-xs text-white p1.5 outline-none placeholder-white">
+                <input v-model="form.message" type="text" placeholder="موضوع" class="r35kkr">
               </div>
             </div>
             <div mr3>
-              <textarea v-model="form.content" cols="25" rows="6" placeholder="پیغام *"
-                class="bg-gray/80 text-xs text-white p1.5 outline-none placeholder-white"></textarea>
+              <textarea v-model="form.content" cols="25" rows="6" placeholder="پیغام *" class="r35kkr"></textarea>
               <XyzTransition xyz="fade up">
-                <p v-if="form.contentErr" class="text-xs text-red mt1 -tracking-0.5px">{{ form.contentErr }}</p>
+                <p v-if="form.contentErr" class="b1v8d3">{{ form.contentErr }}</p>
               </XyzTransition>
             </div>
           </div>
 
-          <button class=" text-white mt2 px8 opacity-90 py2 bg-#f26522 duration-250 outline-none hover:bg-#002c60">
+          <button class="ev29ll">
             <span v-if="!loading" text-xs>ارسال</span>
-            <div v-else class="i-carbon-circle-dash animate-spin text-xl text-center" />
+            <div v-else i-carbon-circle-dash class="hjn312" />
           </button>
         </form>
       </div>
@@ -520,6 +516,86 @@ const validation = () => {
   background-position: center;
 }
 
+.cwe4jh {
+  display: flex;
+  justify-content: center;
+  padding: 0.75rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.dcnsog {
+  max-width: 420px;
+}
+
+.h36qhs>:not([hidden])~:not([hidden]) {
+  --un-space-y-reverse: 0;
+  margin-top: calc(0.75rem * calc(1 - var(--un-space-y-reverse)));
+  margin-bottom: calc(0.75rem * var(--un-space-y-reverse));
+}
+
+.h36qhs {
+  --un-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--un-text-opacity));
+}
+
+.unn7x1 {
+  margin-top: 1.25rem;
+}
+
+.r35kkr {
+  background-color: rgba(156, 163, 175, 0.8);
+  padding: 0.375rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  --un-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--un-text-opacity));
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.r35kkr::placeholder {
+  --un-placeholder-opacity: 1;
+  color: rgba(255, 255, 255, var(--un-placeholder-opacity));
+}
+
+.b1v8d3 {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  letter-spacing: -0.5px;
+  --un-text-opacity: 1;
+  color: rgba(248, 113, 113, var(--un-text-opacity));
+}
+
+.ev29ll {
+  margin-top: 0.5rem;
+  --un-bg-opacity: 1;
+  background-color: rgba(242, 101, 34, var(--un-bg-opacity));
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  --un-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--un-text-opacity));
+  opacity: 0.9;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition-duration: 250ms;
+}
+
+.ev29ll:hover {
+  --un-bg-opacity: 1;
+  background-color: rgba(0, 44, 96, var(--un-bg-opacity));
+}
+
+.hjn312 {
+  animation: spin 1s linear infinite;
+  text-align: center;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
 @media (min-width: 640px) {
   .b5kzqy {
     width: 430px;
@@ -701,6 +777,27 @@ const validation = () => {
   .f6t99k {
     text-align: center;
   }
+
+  .dcnsog {
+    max-width: 100%;
+    width: 900px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .h36qhs {
+    order: 1;
+    margin-top: 1rem;
+    margin-right: 1rem;
+  }
+
+  .h36qhs>:not([hidden])~:not([hidden]) {
+    --un-space-y-reverse: 0;
+    margin-top: calc(1.25rem * calc(1 - var(--un-space-y-reverse)));
+    margin-bottom: calc(1.25rem * var(--un-space-y-reverse));
+  }
+
 }
 
 @media (min-width: 1024px) {
@@ -846,5 +943,14 @@ const validation = () => {
     width: 700px;
     text-align: right;
   }
+
+  .dcnsog {
+    width: 1100px;
+  }
+
+  .unn7x1 {
+    margin-left: 2.5rem;
+  }
+
 }
 </style>
