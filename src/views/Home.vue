@@ -30,11 +30,50 @@ const services = ref({
   part2: ['ممیزی و تضمین', 'معاملات و سهام', 'مشاوره مالی', 'برنامه ریزی استراتژیک', 'اوراق قرضه و کالاها', 'پیش بینی های مالی']
 })
 const teams = ref([team1, team2, team3, team4, team5])
+const loading = ref(false)
+const form = reactive({
+  username: '',
+  usernameErr: '',
+  email: '',
+  emailErr: '',
+  message: '',
+  content: '',
+  contentErr: '',
+})
+const validation = () => {
+  if (form.username === '') {
+    form.usernameErr = 'نام کاربری خود را وارد کنید!'
+  } else {
+    form.usernameErr = ''
+  }
+  if (form.email === '') {
+    form.emailErr = 'پست الکترونیک خود را وارد کنید!'
+  } else {
+    form.emailErr = ''
+  }
+  if (form.content === '') {
+    form.contentErr = 'پیغام خود را بگذارید!'
+  } else {
+    form.contentErr = ''
+  }
+
+  if (form.username !== '' && form.email !== '' && form.content !== '') {
+    loading.value = true
+
+    setTimeout(() => {
+      form.username = ''
+      form.email = ''
+      form.message = ''
+      form.content = ''
+      loading.value = false
+    }, 2000);
+  }
+}
 </script>
 
 <template>
   <main>
-    <section class="d12e0s">
+    <!-- <section class="d12e0s">
       <div class="m09a1j">
         <div class="e3nwjj">
           <img src="../assets/service_man.png" alt="service man" class="b7flb2">
@@ -56,9 +95,9 @@ const teams = ref([team1, team2, team3, team4, team5])
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
-    <section class="n23zng">
+    <!-- <section class="n23zng">
       <div class="hgdohl">
         <img src="../assets/corporation.jpg" alt="corporation" class="t09agt">
         <div class="ykw0m7">
@@ -76,9 +115,9 @@ const teams = ref([team1, team2, team3, team4, team5])
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
-    <section class="gsjd7h">
+    <!-- <section class="gsjd7h">
       <div class="fsswvy">
         <div class="bwup6o">
           <div class="l4eydi">
@@ -104,9 +143,9 @@ const teams = ref([team1, team2, team3, team4, team5])
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
-    <section class="t0x6on">
+    <!-- <section class="t0x6on">
       <div class="l4eydi">
         <div class="p94l8e">
           <h6 text-xs>پروژه‌های ما</h6>
@@ -128,6 +167,52 @@ const teams = ref([team1, team2, team3, team4, team5])
           <p class="pqkind">{{ description }}</p>
           <h6 class="s8gdus t9yvn3">دیدن جزئیات</h6>
         </div>
+      </div>
+    </section> -->
+
+    <section class="n5vidf p3 py10 flex justify-center">
+      <div class="max-w-420px">
+        <div text-white space-y3>
+          <h1 class="s8b33g !tracking-2px ">درخواست تماس</h1>
+          <p text-xs>{{ description }}</p>
+        </div>
+
+        <form @submit.prevent="validation" class="mt5">
+          <div class="flex">
+            <div class="space-y-2.8">
+              <div>
+                <input v-model="form.username" type="text" placeholder="نام *"
+                  class="bg-gray/80 text-xs text-white p1.5 outline-none placeholder-white">
+                <XyzTransition mode="out-in" xyz="fade right">
+                  <p v-if="form.usernameErr" class="text-xs text-red mt1 -tracking-0.5px">{{ form.usernameErr }}</p>
+                </XyzTransition>
+              </div>
+              <div>
+                <input v-model="form.email" type="email" placeholder="پست الکترونیک *"
+                  class="bg-gray/80 text-xs text-white p1.5 outline-none placeholder-white">
+                <XyzTransition mode="out-in" xyz="fade right">
+                  <p v-if="form.emailErr" class="text-xs text-red mt1 -tracking-0.5px">{{ form.emailErr }}</p>
+                </XyzTransition>
+              </div>
+              <div>
+                <input v-model="form.message" type="text" placeholder="موضوع"
+                  class="bg-gray/80 text-xs text-white p1.5 outline-none placeholder-white">
+              </div>
+            </div>
+            <div mr3>
+              <textarea v-model="form.content" cols="25" rows="6" placeholder="پیغام *"
+                class="bg-gray/80 text-xs text-white p1.5 outline-none placeholder-white"></textarea>
+              <XyzTransition xyz="fade up">
+                <p v-if="form.contentErr" class="text-xs text-red mt1 -tracking-0.5px">{{ form.contentErr }}</p>
+              </XyzTransition>
+            </div>
+          </div>
+
+          <button class=" text-white mt2 px8 opacity-90 py2 bg-#f26522 duration-250 outline-none hover:bg-#002c60">
+            <span v-if="!loading" text-xs>ارسال</span>
+            <div v-else class="i-carbon-circle-dash animate-spin text-xl text-center" />
+          </button>
+        </form>
       </div>
     </section>
   </main>
@@ -427,6 +512,12 @@ const teams = ref([team1, team2, team3, team4, team5])
 .t9yvn3 {
   margin-top: 1rem;
   text-align: center;
+}
+
+.n5vidf {
+  background-image: url('../assets/shape.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 @media (min-width: 640px) {

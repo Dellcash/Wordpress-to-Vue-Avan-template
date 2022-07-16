@@ -61,7 +61,7 @@ const leave = (el) => {
             </div>
 
             <Transition name="expand" @enter="enter" @after-enter="afterEnter" @leave="leave">
-              <div v-if="main.servicesBtn" mr-10 flex flex-col>
+              <div v-if="main.servicesBtn" class="d3rafd">
                 <RouterLink :to="service.link" v-for="service in main.links.services" :key="service" class="m1bmsc">{{
                     service.title
                 }}
@@ -221,6 +221,12 @@ const leave = (el) => {
   margin-right: 0.5rem;
   font-size: 0.75rem;
   font-weight: 500;
+}
+
+.d3rafd {
+  margin-right: 2.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .m1bmsc {
