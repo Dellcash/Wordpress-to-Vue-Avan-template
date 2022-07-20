@@ -6,6 +6,9 @@ import team2 from '../assets/ppl2.jpg'
 import team3 from '../assets/ppl3.jpg'
 import team4 from '../assets/ppl4.jpg'
 import team5 from '../assets/ppl5.jpg'
+import blog1 from '../assets/blog_1.jpg'
+import blog2 from '../assets/blog_2.jpg'
+import blog3 from '../assets/blog_3.jpg'
 
 const description = ref('لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.')
 const services = ref({
@@ -30,6 +33,7 @@ const services = ref({
   part2: ['ممیزی و تضمین', 'معاملات و سهام', 'مشاوره مالی', 'برنامه ریزی استراتژیک', 'اوراق قرضه و کالاها', 'پیش بینی های مالی']
 })
 const teams = ref([team1, team2, team3, team4, team5])
+
 const loading = ref(false)
 const form = reactive({
   username: '',
@@ -69,6 +73,24 @@ const validation = () => {
     }, 2000);
   }
 }
+
+const blogPosts = ref([
+  {
+    img: blog1,
+    title: 'چرا برای آموزش مالی هزینه کنیم',
+    date: '۱۰ دی ۹۸'
+  },
+  {
+    img: blog2,
+    title: 'طرح هایی برای رشد کسب و کار شما',
+    date: '۱۰ دی ۹۸'
+  },
+  {
+    img: blog3,
+    title: 'یک مشاور خوب چه ویژگی هایی دارد ؟',
+    date: '۱۲ آذر ۹۷'
+  }
+])
 </script>
 
 <template>
@@ -206,9 +228,65 @@ const validation = () => {
 
           <button class="ev29ll">
             <span v-if="!loading" text-xs>ارسال</span>
-            <div v-else i-carbon-circle-dash class="hjn312" />
+            <div v-else i-carbon-circle-dash animate-spin class="hjn312" />
           </button>
         </form>
+      </div>
+    </section>
+
+    <section class="h7c728">
+      <div class="qr37t9">
+        <div class="l4eydi">
+          <div class="p94l8e">
+            <h6 text-xs>وبلاگ ما</h6>
+            <div class="gvcdfs">
+              <h4 class="s8b33g !tracking-2px">آخرین خبر ما</h4>
+              <h6 class="s8gdus">نمایش تمام پست‌ها</h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="o16yyo">
+          <div v-for="posts in blogPosts" :key="posts" class="p3xo7a">
+            <img :src="posts.img" alt="blog image" class="wuvabq">
+            <div>
+              <h5 class="gglewz">{{ posts.title }}</h5>
+              <h6 text="xs gray">{{ posts.date }}</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="h7c728 bg-#e5eef6">
+      <div class="qr37t9">
+        <div class="l4eydi">
+          <div class="p94l8e">
+            <h6 text-xs>​گواهینامه و شریک</h6>
+            <div class="gvcdfs">
+              <h4 class="s8b33g !tracking-1px">مشتریان ما چه می گوید؟</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="xxnmvn">
+          <div v-for="n in 3" :key="n" class="p3xo7a c0pm8y">
+            <div bg-white p4>
+              <div class="p7v3cs">
+                <img src="../assets/james.svg" alt="user avatar" class="e9u6ee">
+                <div text-right>
+                  <h5 class="j7egoq">امید دلکش</h5>
+                  <h6 text="xs gray">از تهران</h6>
+                </div>
+              </div>
+              <div class="h4fold">
+                <div i-carbon-quotes class="qyv099" />
+              </div>
+              <p class="uuuw82">{{ description }}{{ description }}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -590,10 +668,116 @@ const validation = () => {
 }
 
 .hjn312 {
-  animation: spin 1s linear infinite;
   text-align: center;
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.h7c728 {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.75rem;
+  padding-bottom: 1.25rem;
+}
+
+.qr37t9 {
+  width: 420px;
+}
+
+.o16yyo>:not([hidden])~:not([hidden]) {
+  --un-space-y-reverse: 0;
+  margin-top: calc(1.25rem * calc(1 - var(--un-space-y-reverse)));
+  margin-bottom: calc(1.25rem * var(--un-space-y-reverse));
+}
+
+.o16yyo {
+  padding: 0.75rem;
+}
+
+.p3xo7a>:not([hidden])~:not([hidden]) {
+  --un-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--un-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--un-space-y-reverse));
+}
+
+.p3xo7a {
+  text-align: center;
+}
+
+.wuvabq {
+  width: 100%;
+  height: 15rem;
+  object-fit: cover;
+}
+
+.gglewz {
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  letter-spacing: -1px;
+}
+
+.xxnmvn {
+  margin: 1.25rem;
+}
+
+.xxnmvn>:not([hidden])~:not([hidden]) {
+  --un-space-y-reverse: 0;
+  margin-top: calc(1.25rem * calc(1 - var(--un-space-y-reverse)));
+  margin-bottom: calc(1.25rem * var(--un-space-y-reverse));
+}
+
+.p7v3cs {
+  display: flex;
+  align-items: center;
+}
+
+.e9u6ee {
+  margin-left: 0.75rem;
+  width: 3.75rem;
+  border-radius: 9999px;
+  background-color: rgba(156, 163, 175, 0.1);
+}
+
+.j7egoq {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.h4fold {
+  position: relative;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  justify-content: flex-end;
+  border-top-width: 1px;
+  border-top-style: solid;
+  --un-border-opacity: 1;
+  border-color: rgba(252, 224, 211, var(--un-border-opacity));
+}
+
+.qyv099 {
+  position: absolute;
+  top: -0.8rem;
+  left: 1.25rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  --un-rotate-x: 0;
+  --un-rotate-y: 0;
+  --un-rotate-z: 0;
+  --un-rotate: 180deg;
+  transform: translateX(var(--un-translate-x)) translateY(var(--un-translate-y)) translateZ(var(--un-translate-z)) rotate(var(--un-rotate)) rotateX(var(--un-rotate-x)) rotateY(var(--un-rotate-y)) rotateZ(var(--un-rotate-z)) skewX(var(--un-skew-x)) skewY(var(--un-skew-y)) scaleX(var(--un-scale-x)) scaleY(var(--un-scale-y)) scaleZ(var(--un-scale-z));
+  --un-text-opacity: 1;
+  color: rgba(252, 224, 211, var(--un-text-opacity));
+}
+
+.uuuw82 {
+  margin-top: 2.75rem;
+  text-align: right;
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 @media (min-width: 640px) {
@@ -798,6 +982,28 @@ const validation = () => {
     margin-bottom: calc(1.25rem * var(--un-space-y-reverse));
   }
 
+  .qr37t9 {
+    width: 768px;
+  }
+
+  .xxnmvn {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-gap: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .xxnmvn>:not([hidden])~:not([hidden]) {
+    --un-space-y-reverse: 0;
+    margin-top: calc(0rem * calc(1 - var(--un-space-y-reverse)));
+    margin-bottom: calc(0rem * var(--un-space-y-reverse));
+  }
+
+  .c0pm8y:last-child {
+    grid-column: span 2/span 2;
+    margin-right: 25%;
+    width: 50%;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -952,5 +1158,36 @@ const validation = () => {
     margin-left: 2.5rem;
   }
 
+  .qr37t9 {
+    width: 91.4%;
+  }
+
+  .o16yyo {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-gap: 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .o16yyo>:not([hidden])~:not([hidden]) {
+    --un-space-y-reverse: 0;
+    margin-top: calc(0rem * calc(1 - var(--un-space-y-reverse)));
+    margin-bottom: calc(0rem * var(--un-space-y-reverse));
+  }
+
+  .xxnmvn {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .c0pm8y:last-child {
+    grid-column: span 1/span 1;
+    margin-right: 0rem;
+    width: 100%;
+  }
+
+  .uuuw82 {
+    line-height: 1rem;
+    letter-spacing: -1px;
+  }
 }
 </style>

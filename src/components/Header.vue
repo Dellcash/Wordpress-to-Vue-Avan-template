@@ -364,7 +364,7 @@ const socials = ref(['i-carbon-media-cast', 'i-carbon-logo-linkedin', 'i-carbon-
   background-color: currentColor;
   width: 1em;
   height: 1em;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
   margin-right: 4px;
   cursor: pointer;
   --un-text-opacity: 1;
