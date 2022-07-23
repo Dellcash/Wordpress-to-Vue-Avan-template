@@ -51,7 +51,7 @@ const socials = ref(['i-carbon-media-cast', 'i-carbon-logo-linkedin', 'i-carbon-
         <div class="xfz0mb">
           <div space-x-5>
             <button v-for="link in main.links.part1" :key="link" first:ml5>
-              <RouterLink :to="link.link" class="ndjxbp">
+              <RouterLink :to="link.link" class="ndjxbp" exact-active-class="!text-red-400">
                 {{
                     link.title
                 }}
@@ -87,7 +87,7 @@ const socials = ref(['i-carbon-media-cast', 'i-carbon-logo-linkedin', 'i-carbon-
           </div>
         </div>
 
-        <div relative ml5>
+        <div class="t0d48p">
           <div class="x1bevm" />
           <span class="fmdpc7">۱</span>
         </div>
@@ -178,6 +178,11 @@ const socials = ref(['i-carbon-media-cast', 'i-carbon-logo-linkedin', 'i-carbon-
   position: relative;
 }
 
+.t0d48p {
+  position: relative;
+  margin-left: 1.25rem;
+}
+
 .x1bevm {
   --un-icon: url("data:image/svg+xml;utf8,%3Csvg preserveAspectRatio='xMidYMid meet' viewBox='0 0 32 32' width='1em' height='1em' xmlns='http://www.w3.org/2000/svg' %3E%3Ccircle cx='10' cy='28' r='2' fill='currentColor'/%3E%3Ccircle cx='24' cy='28' r='2' fill='currentColor'/%3E%3Cpath fill='currentColor' d='M4.98 2.804A1 1 0 0 0 4 2H0v2h3.18l3.84 19.196A1 1 0 0 0 8 24h18v-2H8.82l-.8-4H26a1 1 0 0 0 .976-.783L29.244 7h-2.047l-1.999 9H7.62Z'/%3E%3Cpath fill='currentColor' d='M18 6V2h-2v4h-4v2h4v4h2V8h4V6h-4z'/%3E%3C/svg%3E");
   mask: var(--un-icon) no-repeat;
@@ -201,7 +206,7 @@ const socials = ref(['i-carbon-media-cast', 'i-carbon-logo-linkedin', 'i-carbon-
   --un-bg-opacity: 1;
   background-color: rgba(255, 255, 255, var(--un-bg-opacity));
   padding-left: 5px;
-  padding-right: 0.3rem;
+  padding-right: 0.35rem;
   padding-top: 1px;
   font-size: 9px;
 }
@@ -443,7 +448,7 @@ const socials = ref(['i-carbon-media-cast', 'i-carbon-logo-linkedin', 'i-carbon-
   --un-bg-opacity: 1;
   background-color: rgba(255, 255, 255, var(--un-bg-opacity));
   padding-left: 5px;
-  padding-right: 0.3rem;
+  padding-right: 0.35rem;
   padding-top: 1px;
   font-size: 9px;
 }

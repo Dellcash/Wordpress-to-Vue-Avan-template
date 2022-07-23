@@ -13,11 +13,11 @@ export const useMain = defineStore({
         },
         {
           title: 'درباره ما',
-          link: '#'
+          link: '/about'
         },
         {
           title: 'ما چگونه کار می‌کنیم',
-          link: '#'
+          link: '/our-work'
         }
       ],
       services: [

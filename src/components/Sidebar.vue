@@ -192,7 +192,7 @@ const leave = (el) => {
   width: 1em;
   height: 1em;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 12px;
   transition-duration: 250ms;
 }
 
@@ -214,7 +214,7 @@ const leave = (el) => {
   width: 1em;
   height: 1em;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .xth5mc {
@@ -259,6 +259,14 @@ const leave = (el) => {
 @media (min-width: 768px) {
   .ir78cg {
     width: 300px;
+  }
+
+  .n4ilpk {
+    font-size: 16px;
+  }
+
+  .a38mgg {
+    font-size: 16px;
   }
 }
 </style>

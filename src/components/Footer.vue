@@ -92,7 +92,7 @@ const validation = () => {
           </div>
         </div>
 
-        <div>
+        <div class="hidden md:block">
           <h3 class="h9h5ks">خدمات</h3>
 
           <div class="i87qry">
@@ -103,7 +103,7 @@ const validation = () => {
           </div>
         </div>
 
-        <div>
+        <div class="hidden md:block">
           <h3 class="h9h5ks">شرکت</h3>
 
           <div class="i87qry">
@@ -111,6 +111,30 @@ const validation = () => {
                 link.title
             }}
             </routerLink>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:hidden">
+          <div text-center>
+            <h3 class="h9h5ks">خدمات</h3>
+
+            <div class="i87qry">
+              <routerLink v-for="link in links" :key="link" :to="link.link" class="e72srp">{{
+                  link.title
+              }}
+              </routerLink>
+            </div>
+          </div>
+
+          <div text-center>
+            <h3 class="h9h5ks">شرکت</h3>
+
+            <div class="i87qry">
+              <routerLink v-for="link in links" :key="link" :to="link.link" class="e72srp">{{
+                  link.title
+              }}
+              </routerLink>
+            </div>
           </div>
         </div>
 
