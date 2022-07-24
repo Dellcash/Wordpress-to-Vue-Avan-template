@@ -53,15 +53,15 @@ const validation = () => {
 </script>
 
 <template>
-  <main class="bg-#e5eef6 p5">
-    <section class="bg-white">
+  <main class="bg-#e5eef6 p5 flex justify-center">
+    <section class="bg-white max-w-420px md:max-w-full">
       <div pt8 px5 space-y4 text-gray-600>
         <h6 text-xs>درباره ما</h6>
         <h3 text-xl text-black font-bold>ما مشاوره هستیم​​​​​​​</h3>
         <p text-xs>{{ description }}</p>
       </div>
 
-      <div flex items-center px5 pt7>
+      <div flex items-center px5 pt7 sm:pb3>
         <div v-for="social in socials" :key="social" class="bg-#f26522 rounded-full text-white p1.5 m1">
           <div :class="social" class="text-2xl" />
         </div>
@@ -82,23 +82,23 @@ const validation = () => {
         <p text-xs>{{ description }}</p>
       </div>
 
-      <div>
-        <img src="../assets/member_1.jpg" alt="team member" class="wfull h-17rem object-cover p5 pb0">
-        <div class="bg-#00387a p5 text-white">
-          <p text-xs>{{ description }}</p>
+      <div md="grid grid-cols-2 my10">
+        <img src="../assets/member_1.jpg" alt="team member" class="wfull h-17rem object-cover p5 pb0 md:p0 md:h-18rem">
+        <div class="bg-#00387a p5 text-white md:p10">
+          <p text-xs md:leading-5>{{ description }}</p>
 
-          <div flex items-end justify-end p3>
-            <h6 class="text-xs ">نام <br> موسس ومدیرعامل</h6>
+          <div flex items-end justify-end p3 md:p0 md:mt10>
+            <h6 text-xs>نام <br> موسس ومدیرعامل</h6>
             <img src="../assets/sign.png" alt="sign" class="w17">
           </div>
         </div>
       </div>
 
-      <div class="vjk9ut">
+      <div class="vjk9ut md:text-center md:space-y-4">
         <h6 text-xs>دستاوردها و آمار​​​​​​​</h6>
-        <h3 text-xl font-bold pt2>25 سال عمر ما​​​​​​​​​​​​​</h3>
+        <h3 text-2xl font-bold pt2>25 سال عمر ما​​​​​​​​​​​​​</h3>
 
-        <div flex flex-col items-center justify-center mt5>
+        <div flex flex-col items-center justify-center mt5 md:flex-row>
           <div v-for="n in 3" :key="n" class="w-80% bg-white p5 m2 flex flex-col justify-center items-center">
             <div class="bg-#feefe8 p2 inline-block mb5">
               <div i-carbon-user class="bg-#f26522 text-3xl" />
@@ -109,51 +109,53 @@ const validation = () => {
         </div>
       </div>
 
-      <div class="px5 text-gray-600">
-        <h6 text-xs>حمایت کردن​​​​​​​</h6>
-        <h3 text-xl text-black font-bold>چگونه میتوانیم به شما کمک کنیم؟</h3>
+      <div md="grid grid-cols-2 items-end p5">
+        <div class="px5 text-gray-600">
+          <h6 text-xs>حمایت کردن​​​​​​​</h6>
+          <h3 text-xl text-black font-bold>چگونه میتوانیم به شما کمک کنیم؟</h3>
 
-        <div class="b73rff space-y5 !pb8">
-          <h6 class="text-#f26522 text-xs">​شماره تماس</h6>
-          <h6>۰۹۳۵۳۴۱۷۳۵۲</h6>
-          <h6 class="text-#f26522 text-xs">​شماره تماس</h6>
-          <h6 text-xs>لطفا ادرس خود را وارد کنید​​​​​​​</h6>
-        </div>
-      </div>
-
-      <div>
-        <form @submit.prevent="validation" p="x5 y10">
-          <div flex>
-            <div class="space-y-2.3">
-              <div>
-                <input v-model="form.username" type="text" placeholder="نام *" class="r35kkr">
-                <XyzTransition xyz="fade right">
-                  <p v-if="form.usernameErr" class="b1v8d3">{{ form.usernameErr }}</p>
-                </XyzTransition>
-              </div>
-              <div>
-                <input v-model="form.email" type="email" placeholder="پست الکترونیک *" class="r35kkr">
-                <XyzTransition xyz="fade right">
-                  <p v-if="form.emailErr" class="b1v8d3">{{ form.emailErr }}</p>
-                </XyzTransition>
-              </div>
-              <div>
-                <input v-model="form.message" type="text" placeholder="موضوع" class="r35kkr">
-              </div>
-            </div>
-            <div mr3>
-              <textarea v-model="form.content" rows="6" placeholder="پیغام *" class="r35kkr"></textarea>
-              <XyzTransition xyz="fade up">
-                <p v-if="form.contentErr" class="b1v8d3">{{ form.contentErr }}</p>
-              </XyzTransition>
-            </div>
+          <div class="b73rff space-y5 !pb8">
+            <h6 class="text-#f26522 text-xs">​شماره تماس</h6>
+            <h6>۰۹۳۵۳۴۱۷۳۵۲</h6>
+            <h6 class="text-#f26522 text-xs">​شماره تماس</h6>
+            <h6 text-xs>لطفا ادرس خود را وارد کنید​​​​​​​</h6>
           </div>
+        </div>
 
-          <button class="ev29ll">
-            <span v-if="!loading" text-xs>ارسال</span>
-            <div v-else i-carbon-circle-dash animate-spin class="hjn312" />
-          </button>
-        </form>
+        <div p="x5 y10 md:y0 md:b5">
+          <form @submit.prevent="validation">
+            <div flex justify-between>
+              <div class="space-y-2.3">
+                <div>
+                  <input v-model="form.username" type="text" placeholder="نام *" class="r35kkr !wfull">
+                  <XyzTransition xyz="fade right">
+                    <p v-if="form.usernameErr" class="b1v8d3">{{ form.usernameErr }}</p>
+                  </XyzTransition>
+                </div>
+                <div>
+                  <input v-model="form.email" type="email" placeholder="پست الکترونیک *" class="r35kkr">
+                  <XyzTransition xyz="fade right">
+                    <p v-if="form.emailErr" class="b1v8d3">{{ form.emailErr }}</p>
+                  </XyzTransition>
+                </div>
+                <div>
+                  <input v-model="form.message" type="text" placeholder="موضوع" class="r35kkr">
+                </div>
+              </div>
+              <div mr3>
+                <textarea v-model="form.content" rows="6" placeholder="پیغام *" class="r35kkr"></textarea>
+                <XyzTransition xyz="fade up">
+                  <p v-if="form.contentErr" class="b1v8d3">{{ form.contentErr }}</p>
+                </XyzTransition>
+              </div>
+            </div>
+
+            <button class="ev29ll">
+              <span v-if="!loading" text-xs>ارسال</span>
+              <div v-else i-carbon-circle-dash animate-spin class="hjn312" />
+            </button>
+          </form>
+        </div>
       </div>
     </section>
   </main>
@@ -211,6 +213,7 @@ const validation = () => {
 }
 
 .ev29ll {
+  width: 100%;
   margin-top: 0.5rem;
   --un-bg-opacity: 1;
   background-color: rgba(242, 101, 34, var(--un-bg-opacity));
