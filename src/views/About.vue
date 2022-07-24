@@ -53,79 +53,78 @@ const validation = () => {
 </script>
 
 <template>
-  <main class="bg-#e5eef6 p5 flex justify-center md:py10 xl:px10">
-    <section class="bg-white max-w-420px md:max-w-768px xl:max-w-full">
-      <div pt8 px5 space-y4 text-gray-600 xl:px20>
+  <main class="c52q3a">
+    <section class="eg7bb4">
+      <div class="z36mx6">
         <h6 text-xs>درباره ما</h6>
-        <h3 text-xl text-black font-bold>ما مشاوره هستیم​​​​​​​</h3>
+        <h3 class="p60sat">ما مشاوره هستیم​​​​​​​</h3>
         <p text-xs>{{ description }}</p>
       </div>
 
-      <div flex items-center px5 pt7 sm:pb5 xl:pb15 xl:px20>
-        <div v-for="social in socials" :key="social" class="bg-#f26522 rounded-full text-white p1.5 m1">
-          <div :class="social" class="text-2xl" />
+      <div class="p4bwcv">
+        <div v-for="social in socials" :key="social" class="va821j">
+          <div :class="social" text-2xl />
         </div>
-        <p text-xs mr2>ما را دنبال کنید.</p>
+        <p class="lxjqav">ما را دنبال کنید.</p>
       </div>
 
-      <div p3 xl:p0>
+      <div p="3 xl:0">
         <Carousel :autoplay="2000" :wrap-around="true">
           <Slide v-for="team in teams" :key="team">
-            <img :src="team" alt="team members" class="wfull h-20rem object-cover">
+            <img :src="team" alt="team members" class="d2ez9h">
           </Slide>
         </Carousel>
       </div>
 
-      <div pt8 px5 space-y4 text-gray-600 xl:px-20>
+      <div class="z36mx6">
         <h6 text-xs>ما چه کاری انجام می دهیم ؟​​​​​​​</h6>
-        <h3 text-xl text-black font-bold>ماموریت ما و هدف ما​​​​​​​</h3>
+        <h3 class="p60sat">ماموریت ما و هدف ما​​​​​​​</h3>
         <p text-xs>{{ description }}</p>
       </div>
 
-      <div md="grid grid-cols-2 my10" xl:px20>
-        <img src="../assets/member_1.jpg" alt="team member" class="wfull h-17rem object-cover p5 pb0 md:p0 md:h-18rem">
-        <div class="bg-#00387a p5 text-white md:p10">
-          <p text-xs md:leading-5>{{ description }}</p>
+      <div class="u09r8k">
+        <img src="../assets/member_1.jpg" alt="team member" class="jn7zwa">
+        <div class="uctxor">
+          <p class="osubnz">{{ description }}</p>
 
-          <div flex items-end justify-end p3 md:p0 md:mt10>
+          <div class="n4i9an">
             <h6 text-xs>نام <br> موسس ومدیرعامل</h6>
-            <img src="../assets/sign.png" alt="sign" class="w17">
+            <img src="../assets/sign.png" alt="sign" w17>
           </div>
         </div>
       </div>
 
-      <div class="vjk9ut md:text-center md:space-y-4 xl:text-right !xl:px-20">
+      <div class="xn8b6b">
         <h6 text-xs>دستاوردها و آمار​​​​​​​</h6>
-        <h3 text-2xl font-bold pt2>25 سال عمر ما​​​​​​​​​​​​​</h3>
+        <h3 class="n2xa7s">۲۵ سال عمر ما​​​​​​​​​​​​​</h3>
 
-        <div flex flex-col items-center justify-center mt5 md:flex-row>
-          <div v-for="n in 3" :key="n"
-            class="w-80% bg-white p5 m2 flex flex-col justify-center items-center xl:items-start">
-            <div class="bg-#feefe8 p2 inline-block mb5">
-              <div i-carbon-user class="bg-#f26522 text-3xl" />
+        <div class="t9h60h">
+          <div v-for="n in 3" :key="n" class="ltspg7">
+            <div class="zf7hs8">
+              <div i-carbon-user class="vwwzw2" />
             </div>
 
-            <span class="text-#f26522 text-sm">۵۲ کارشناسان <span class="!text-black text-sm">شکل کار ما</span></span>
+            <span text="#f26522 sm">۵۲ کارشناسان <span text="!black sm">شکل کار ما</span></span>
           </div>
         </div>
       </div>
 
-      <div md="grid grid-cols-2 items-end p5" xl:px-20>
-        <div class="px5 text-gray-600">
+      <div class="c576cu">
+        <div class="g9b8ru">
           <h6 text-xs>حمایت کردن​​​​​​​</h6>
-          <h3 text-xl text-black font-bold>چگونه میتوانیم به شما کمک کنیم؟</h3>
+          <h3 class="oax00q">چگونه میتوانیم به شما کمک کنیم؟</h3>
 
-          <div class="b73rff space-y5 !pb8">
-            <h6 class="text-#f26522 text-xs">​شماره تماس</h6>
+          <div class="b73rff">
+            <h6 class="lrwj3k">​شماره تماس</h6>
             <h6>۰۹۳۵۳۴۱۷۳۵۲</h6>
-            <h6 class="text-#f26522 text-xs">​شماره تماس</h6>
+            <h6 class="lrwj3k">​شماره تماس</h6>
             <h6 text-xs>لطفا ادرس خود را وارد کنید​​​​​​​</h6>
           </div>
         </div>
 
         <div p="x5 y10 md:y0 md:b5">
           <form @submit.prevent="validation">
-            <div flex justify-between>
+            <div class="e84c43">
               <div class="space-y-2.3">
                 <div>
                   <input v-model="form.username" type="text" placeholder="نام *" class="r35kkr !wfull">
@@ -163,7 +162,101 @@ const validation = () => {
 </template>
 
 <style scoped>
-.vjk9ut {
+.c52q3a {
+  display: flex;
+  justify-content: center;
+  --un-bg-opacity: 1;
+  background-color: rgba(229, 238, 246, var(--un-bg-opacity));
+  padding: 1.25rem;
+}
+
+.eg7bb4 {
+  max-width: 420px;
+  --un-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, var(--un-bg-opacity));
+}
+
+.z36mx6>:not([hidden])~:not([hidden]) {
+  --un-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--un-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--un-space-y-reverse));
+}
+
+.z36mx6 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 2rem;
+  --un-text-opacity: 1;
+  color: rgba(75, 85, 99, var(--un-text-opacity));
+}
+
+.p60sat {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  --un-text-opacity: 1;
+  color: rgba(0, 0, 0, var(--un-text-opacity));
+}
+
+.p4bwcv {
+  display: flex;
+  align-items: center;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 1.75rem;
+}
+
+.va821j {
+  margin: 0.25rem;
+  border-radius: 9999px;
+  --un-bg-opacity: 1;
+  background-color: rgba(242, 101, 34, var(--un-bg-opacity));
+  padding: 0.375rem;
+  --un-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--un-text-opacity));
+}
+
+.lxjqav {
+  margin-right: 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.d2ez9h {
+  width: 100%;
+  height: 20rem;
+  object-fit: cover;
+}
+
+.jn7zwa {
+  width: 100%;
+  height: 17rem;
+  object-fit: cover;
+  padding: 1.25rem;
+  padding-bottom: 0rem;
+}
+
+.uctxor {
+  --un-bg-opacity: 1;
+  background-color: rgba(0, 56, 122, var(--un-bg-opacity));
+  padding: 1.25rem;
+  --un-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--un-text-opacity));
+}
+
+.osubnz {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.n4i9an {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 0.75rem;
+}
+
+.xn8b6b {
   background-image: url('../assets/bg_about.jpg');
   background-size: cover;
   background-position: center;
@@ -175,13 +268,90 @@ const validation = () => {
   color: #ffff;
 }
 
+.n2xa7s {
+  padding-top: 0.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+
+.t9h60h {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ltspg7 {
+  margin: 0.5rem;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  --un-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, var(--un-bg-opacity));
+  padding: 1.25rem;
+}
+
+.zf7hs8 {
+  margin-bottom: 1.25rem;
+  display: inline-block;
+  --un-bg-opacity: 1;
+  background-color: rgba(254, 239, 232, var(--un-bg-opacity));
+  padding: 0.5rem;
+}
+
+.vwwzw2 {
+  --un-bg-opacity: 1;
+  background-color: rgba(242, 101, 34, var(--un-bg-opacity));
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.g9b8ru {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  --un-text-opacity: 1;
+  color: rgba(75, 85, 99, var(--un-text-opacity));
+}
+
+.oax00q {
+  padding-top: 1.25rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  --un-text-opacity: 1;
+  color: rgba(0, 0, 0, var(--un-text-opacity));
+}
+
+.b73rff>:not([hidden])~:not([hidden]) {
+  --un-space-y-reverse: 0;
+  margin-top: calc(1.25rem * calc(1 - var(--un-space-y-reverse)));
+  margin-bottom: calc(1.25rem * var(--un-space-y-reverse));
+}
+
 .b73rff {
   background-image: url('../assets/bg_about_1.jpg');
   background-size: cover;
   background-position: center;
   margin-top: 1rem;
   padding: 1.7rem;
-  color: #fff
+  color: #fff;
+  padding-bottom: 2rem
+}
+
+.lrwj3k {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  --un-text-opacity: 1;
+  color: rgba(242, 101, 34, var(--un-text-opacity));
+}
+
+.e84c43 {
+  display: flex;
+  justify-content: space-between;
 }
 
 .r35kkr {
@@ -235,9 +405,116 @@ const validation = () => {
   background-color: rgba(0, 44, 96, var(--un-bg-opacity));
 }
 
-..hjn312 {
+.hjn312 {
   text-align: center;
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+@media (min-width: 640px) {
+  .p4bwcv {
+    padding-bottom: 1.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .c52q3a {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .eg7bb4 {
+    max-width: 768px;
+  }
+
+  .u09r8k {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .jn7zwa {
+    height: 18rem;
+    padding: 0rem;
+  }
+
+  .uctxor {
+    padding: 2.5rem;
+  }
+
+  .osubnz {
+    line-height: 1.25rem;
+  }
+
+  .n4i9an {
+    margin-top: 2.5rem;
+    padding: 0rem;
+  }
+
+  .xn8b6b>:not([hidden])~:not([hidden]) {
+    --un-space-y-reverse: 0;
+    margin-top: calc(1rem * calc(1 - var(--un-space-y-reverse)));
+    margin-bottom: calc(1rem * var(--un-space-y-reverse));
+  }
+
+  .xn8b6b {
+    text-align: center;
+  }
+
+  .t9h60h {
+    flex-direction: row;
+  }
+
+  .c576cu {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: flex-end;
+    padding: 1.25rem;
+  }
+
+}
+
+@media (min-width: 1280px) {
+  .c52q3a {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .eg7bb4 {
+    max-width: 100%;
+  }
+
+  .z36mx6 {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
+  .p4bwcv {
+    padding-left: 5rem;
+    padding-right: 5rem;
+    padding-bottom: 3.75rem;
+  }
+
+  .u09r8k {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
+  .xn8b6b {
+    padding-left: 5rem !important;
+    padding-right: 5rem !important;
+    text-align: right;
+  }
+
+  .ltspg7 {
+    align-items: flex-start;
+  }
+
+  .c576cu {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
 }
 </style>
