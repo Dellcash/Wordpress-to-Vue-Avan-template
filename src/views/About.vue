@@ -53,22 +53,22 @@ const validation = () => {
 </script>
 
 <template>
-  <main class="bg-#e5eef6 p5 flex justify-center">
-    <section class="bg-white max-w-420px md:max-w-full">
-      <div pt8 px5 space-y4 text-gray-600>
+  <main class="bg-#e5eef6 p5 flex justify-center md:py10 xl:px10">
+    <section class="bg-white max-w-420px md:max-w-768px xl:max-w-full">
+      <div pt8 px5 space-y4 text-gray-600 xl:px20>
         <h6 text-xs>درباره ما</h6>
         <h3 text-xl text-black font-bold>ما مشاوره هستیم​​​​​​​</h3>
         <p text-xs>{{ description }}</p>
       </div>
 
-      <div flex items-center px5 pt7 sm:pb3>
+      <div flex items-center px5 pt7 sm:pb5 xl:pb15 xl:px20>
         <div v-for="social in socials" :key="social" class="bg-#f26522 rounded-full text-white p1.5 m1">
           <div :class="social" class="text-2xl" />
         </div>
         <p text-xs mr2>ما را دنبال کنید.</p>
       </div>
 
-      <div p3>
+      <div p3 xl:p0>
         <Carousel :autoplay="2000" :wrap-around="true">
           <Slide v-for="team in teams" :key="team">
             <img :src="team" alt="team members" class="wfull h-20rem object-cover">
@@ -76,13 +76,13 @@ const validation = () => {
         </Carousel>
       </div>
 
-      <div pt8 px5 space-y4 text-gray-600>
+      <div pt8 px5 space-y4 text-gray-600 xl:px-20>
         <h6 text-xs>ما چه کاری انجام می دهیم ؟​​​​​​​</h6>
         <h3 text-xl text-black font-bold>ماموریت ما و هدف ما​​​​​​​</h3>
         <p text-xs>{{ description }}</p>
       </div>
 
-      <div md="grid grid-cols-2 my10">
+      <div md="grid grid-cols-2 my10" xl:px20>
         <img src="../assets/member_1.jpg" alt="team member" class="wfull h-17rem object-cover p5 pb0 md:p0 md:h-18rem">
         <div class="bg-#00387a p5 text-white md:p10">
           <p text-xs md:leading-5>{{ description }}</p>
@@ -94,12 +94,13 @@ const validation = () => {
         </div>
       </div>
 
-      <div class="vjk9ut md:text-center md:space-y-4">
+      <div class="vjk9ut md:text-center md:space-y-4 xl:text-right !xl:px-20">
         <h6 text-xs>دستاوردها و آمار​​​​​​​</h6>
         <h3 text-2xl font-bold pt2>25 سال عمر ما​​​​​​​​​​​​​</h3>
 
         <div flex flex-col items-center justify-center mt5 md:flex-row>
-          <div v-for="n in 3" :key="n" class="w-80% bg-white p5 m2 flex flex-col justify-center items-center">
+          <div v-for="n in 3" :key="n"
+            class="w-80% bg-white p5 m2 flex flex-col justify-center items-center xl:items-start">
             <div class="bg-#feefe8 p2 inline-block mb5">
               <div i-carbon-user class="bg-#f26522 text-3xl" />
             </div>
@@ -109,7 +110,7 @@ const validation = () => {
         </div>
       </div>
 
-      <div md="grid grid-cols-2 items-end p5">
+      <div md="grid grid-cols-2 items-end p5" xl:px-20>
         <div class="px5 text-gray-600">
           <h6 text-xs>حمایت کردن​​​​​​​</h6>
           <h3 text-xl text-black font-bold>چگونه میتوانیم به شما کمک کنیم؟</h3>
