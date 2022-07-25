@@ -41,9 +41,10 @@ const leave = (el) => {
 
         <div space-y-4>
           <div class="ikwtbb">
-            <RouterLink :to="link.link" v-for="link in main.links.part1" :key="link" class="rhht62">{{
-                link.title
-            }}
+            <RouterLink :to="link.link" v-for="link in main.links.part1" :key="link" @click="main.toggled = false"
+              class="rhht62">{{
+                  link.title
+              }}
             </RouterLink>
           </div>
 

@@ -1,4 +1,5 @@
 <script setup>
+import { useMain } from '../stores/main';
 import { Carousel, Slide } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
 import team1 from '../assets/ppl1.jpg'
@@ -10,7 +11,8 @@ import blog1 from '../assets/blog_1.jpg'
 import blog2 from '../assets/blog_2.jpg'
 import blog3 from '../assets/blog_3.jpg'
 
-const description = ref('لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.')
+const main = useMain()
+
 const services = ref({
   part1: [
     {
@@ -33,46 +35,6 @@ const services = ref({
   part2: ['ممیزی و تضمین', 'معاملات و سهام', 'مشاوره مالی', 'برنامه ریزی استراتژیک', 'اوراق قرضه و کالاها', 'پیش بینی های مالی']
 })
 const teams = ref([team1, team2, team3, team4, team5])
-
-const loading = ref(false)
-const form = reactive({
-  username: '',
-  usernameErr: '',
-  email: '',
-  emailErr: '',
-  message: '',
-  content: '',
-  contentErr: '',
-})
-const validation = () => {
-  if (form.username === '') {
-    form.usernameErr = 'نام کاربری خود را وارد کنید!'
-  } else {
-    form.usernameErr = ''
-  }
-  if (form.email === '') {
-    form.emailErr = 'ایمیل خود را وارد کنید!'
-  } else {
-    form.emailErr = ''
-  }
-  if (form.content === '') {
-    form.contentErr = 'پیغام خود را بگذارید!'
-  } else {
-    form.contentErr = ''
-  }
-
-  if (form.username !== '' && form.email !== '' && form.content !== '') {
-    loading.value = true
-
-    setTimeout(() => {
-      form.username = ''
-      form.email = ''
-      form.message = ''
-      form.content = ''
-      loading.value = false
-    }, 2000);
-  }
-}
 
 const blogPosts = ref([
   {
@@ -102,7 +64,7 @@ const blogPosts = ref([
           <div class="ep8ome">
             <h6 class="mfavyi">ما مشاوران هستیم</h6>
             <h1 class="hp0jf0">مشاوره مالی برای کار شما</h1>
-            <p class="p6dr7j">{{ description }}</p>
+            <p class="p6dr7j">{{ main.description }}</p>
             <button class="mo75vt">دریافت نوبت</button>
           </div>
         </div>
@@ -112,7 +74,7 @@ const blogPosts = ref([
             <div v-for="service in services.part1" :key="service" class="b5kzqy">
               <div :class="service.icon" class="tr0gf4" />
               <h6 class="e4pavm">{{ service.title }}</h6>
-              <p class="r8h0aq">{{ description }}</p>
+              <p class="r8h0aq">{{ main.description }}</p>
             </div>
           </div>
         </div>
@@ -128,7 +90,7 @@ const blogPosts = ref([
             <h2 class="ukzif5"><strong class="mwsi2a">ماموریت ما،
                 ارزشها و
                 شعور</strong></h2>
-            <p class="osubnz">{{ description }} {{ description }}</p>
+            <p class="osubnz">{{ main.description }} {{ main.description }}</p>
             <div class="hernb3">
               <img src="../assets/sign.png" alt="sing" class="gh1tfk">
               <h6 class="o62h8i"><span class="i8ytmr">نام</span> <br>موسس
@@ -158,7 +120,7 @@ const blogPosts = ref([
           <div class="mp82t3">
             <div v-for="service in services.part2" :key="service" class="mflud3">
               <h3><strong text-sm>{{ service }}</strong></h3>
-              <p class="x70p31">{{ description }}</p>
+              <p class="x70p31">{{ main.description }}</p>
 
               <h6 class="l7f4sm">ادامه مطلب</h6>
             </div>
@@ -186,7 +148,7 @@ const blogPosts = ref([
 
       <div class="o4o4ot">
         <div class="f6t99k">
-          <p class="pqkind">{{ description }}</p>
+          <p class="pqkind">{{ main.description }}</p>
           <h6 class="s8gdus t9yvn3">دیدن جزئیات</h6>
         </div>
       </div>
@@ -196,38 +158,38 @@ const blogPosts = ref([
       <div class="dcnsog">
         <div class="h36qhs">
           <h1 class="s8b33g !tracking-2px">درخواست تماس</h1>
-          <p text-xs>{{ description }}</p>
+          <p text-xs>{{ main.description }}</p>
         </div>
 
-        <form @submit.prevent="validation" class="unn7x1">
+        <form @submit.prevent="main.validation" class="unn7x1">
           <div flex>
             <div class="space-y-2.8">
               <div>
-                <input v-model="form.username" type="text" placeholder="نام *" class="r35kkr">
+                <input v-model="main.form.username" type="text" placeholder="نام *" class="r35kkr">
                 <XyzTransition xyz="fade right">
-                  <p v-if="form.usernameErr" class="b1v8d3">{{ form.usernameErr }}</p>
+                  <p v-if="main.form.usernameErr" class="b1v8d3">{{ main.form.usernameErr }}</p>
                 </XyzTransition>
               </div>
               <div>
-                <input v-model="form.email" type="email" placeholder="پست الکترونیک *" class="r35kkr">
+                <input v-model="main.form.email" type="email" placeholder="پست الکترونیک *" class="r35kkr">
                 <XyzTransition xyz="fade right">
-                  <p v-if="form.emailErr" class="b1v8d3">{{ form.emailErr }}</p>
+                  <p v-if="main.form.emailErr" class="b1v8d3">{{ main.form.emailErr }}</p>
                 </XyzTransition>
               </div>
               <div>
-                <input v-model="form.message" type="text" placeholder="موضوع" class="r35kkr">
+                <input v-model="main.form.message" type="text" placeholder="موضوع" class="r35kkr">
               </div>
             </div>
             <div mr3>
-              <textarea v-model="form.content" cols="25" rows="6" placeholder="پیغام *" class="r35kkr"></textarea>
+              <textarea v-model="main.form.content" cols="25" rows="6" placeholder="پیغام *" class="r35kkr"></textarea>
               <XyzTransition xyz="fade up">
-                <p v-if="form.contentErr" class="b1v8d3">{{ form.contentErr }}</p>
+                <p v-if="main.form.contentErr" class="b1v8d3">{{ main.form.contentErr }}</p>
               </XyzTransition>
             </div>
           </div>
 
           <button class="ev29ll">
-            <span v-if="!loading" text-xs>ارسال</span>
+            <span v-if="!main.loading" text-xs>ارسال</span>
             <div v-else i-carbon-circle-dash animate-spin class="hjn312" />
           </button>
         </form>
@@ -282,7 +244,7 @@ const blogPosts = ref([
               <div class="h4fold">
                 <div i-carbon-quotes class="qyv099" />
               </div>
-              <p class="uuuw82">{{ description }}{{ description }}
+              <p class="uuuw82">{{ main.description }}{{ main.description }}
               </p>
             </div>
           </div>

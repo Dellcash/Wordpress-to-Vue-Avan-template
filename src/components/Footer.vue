@@ -1,4 +1,8 @@
 <script setup>
+import { useMain } from '../stores/main';
+
+const main = useMain()
+
 const description = ref('لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.')
 
 const links = ref([
@@ -35,46 +39,6 @@ const links = ref([
     link: '#'
   }
 ])
-
-const loading = ref(false)
-const form = reactive({
-  username: '',
-  usernameErr: '',
-  email: '',
-  emailErr: '',
-  message: '',
-  content: '',
-  contentErr: '',
-})
-const validation = () => {
-  if (form.username === '') {
-    form.usernameErr = 'نام کاربری خود را وارد کنید!'
-  } else {
-    form.usernameErr = ''
-  }
-  if (form.email === '') {
-    form.emailErr = 'ایمیل خود را وارد کنید!'
-  } else {
-    form.emailErr = ''
-  }
-  if (form.content === '') {
-    form.contentErr = 'پیغام خود را بگذارید!'
-  } else {
-    form.contentErr = ''
-  }
-
-  if (form.username !== '' && form.email !== '' && form.content !== '') {
-    loading.value = true
-
-    setTimeout(() => {
-      form.username = ''
-      form.email = ''
-      form.message = ''
-      form.content = ''
-      loading.value = false
-    }, 2000);
-  }
-}
 </script>
 
 <template>
@@ -141,33 +105,34 @@ const validation = () => {
         <div class="pa3v2u">
           <h3 class="h9h5ks">اشتراک</h3>
 
-          <form @submit.prevent="validation">
+          <form @submit.prevent="main.validation">
             <div space-y1>
               <div>
-                <input v-model="form.username" type="text" placeholder="نام *" class="q1hwzp">
+                <input v-model="main.form.username" type="text" placeholder="نام *" class="q1hwzp">
                 <XyzTransition xyz="fade up">
-                  <p v-if="form.usernameErr" class="w20xet ">{{ form.usernameErr }}</p>
+                  <p v-if="main.form.usernameErr" class="w20xet ">{{ main.form.usernameErr }}</p>
                 </XyzTransition>
               </div>
               <div>
-                <input v-model="form.email" type="email" placeholder="پست الکترونیک *" class="q1hwzp">
+                <input v-model="main.form.email" type="email" placeholder="پست الکترونیک *" class="q1hwzp">
                 <XyzTransition xyz="fade up">
-                  <p v-if="form.emailErr" class="w20xet">{{ form.emailErr }}</p>
+                  <p v-if="main.form.emailErr" class="w20xet">{{ main.form.emailErr }}</p>
                 </XyzTransition>
               </div>
               <div>
-                <input v-model="form.message" type="text" placeholder="موضوع" class="q1hwzp">
+                <input v-model="main.form.message" type="text" placeholder="موضوع" class="q1hwzp">
               </div>
               <div>
-                <textarea v-model="form.content" cols="25" rows="3" placeholder="پیغام *" class="q1hwzp"></textarea>
+                <textarea v-model="main.form.content" cols="25" rows="3" placeholder="پیغام *"
+                  class="q1hwzp"></textarea>
                 <XyzTransition xyz="fade up">
-                  <p v-if="form.contentErr" class="w20xet !mt0">{{ form.contentErr }}</p>
+                  <p v-if="main.form.contentErr" class="w20xet !mt0">{{ main.form.contentErr }}</p>
                 </XyzTransition>
               </div>
             </div>
 
             <button class="ev29ll">
-              <span v-if="!loading" text-xs>ارسال</span>
+              <span v-if="!main.loading" text-xs>ارسال</span>
               <div v-else i-carbon-circle-dash animate-spin class="hjn312" />
             </button>
           </form>
