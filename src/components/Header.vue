@@ -386,7 +386,7 @@ const socials = ref(['i-carbon-media-cast', 'i-carbon-logo-linkedin', 'i-carbon-
   position: absolute;
   top: 1.875rem;
   left: -3.75rem;
-  width: 7rem;
+  width: 8rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

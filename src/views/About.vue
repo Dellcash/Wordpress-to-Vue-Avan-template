@@ -16,7 +16,7 @@ const teams = ref([team1, team2, team3, team4, team5])
 <template>
   <main class="c52q3a">
     <section class="eg7bb4">
-      <div class="z36mx6">
+      <div class="z36mx6 !xl:pt20">
         <h6 text-xs>درباره ما</h6>
         <h3 class="p60sat">ما مشاوره هستیم​​​​​​​</h3>
         <p text-xs>{{ description }}</p>
@@ -257,7 +257,7 @@ const teams = ref([team1, team2, team3, team4, team5])
   }
 
   .eg7bb4 {
-    max-width: 768px;
+    max-width: 820px;
   }
 
   .u09r8k {
@@ -303,8 +303,7 @@ const teams = ref([team1, team2, team3, team4, team5])
 
 @media (min-width: 1280px) {
   .c52q3a {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding: 3.75rem
   }
 
   .eg7bb4 {

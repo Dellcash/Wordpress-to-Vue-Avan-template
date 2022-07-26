@@ -43,7 +43,7 @@ const validation = () => {
 
 <template>
   <div class="c576cu">
-    <div class="g9b8ru">
+    <div class="g9b8ru ">
       <h6 text-xs>حمایت کردن​​​​​​​</h6>
       <h3 class="oax00q">چگونه میتوانیم به شما کمک کنیم؟</h3>
 
@@ -55,12 +55,12 @@ const validation = () => {
       </div>
     </div>
 
-    <div p="x5 y10 md:y0 md:b5">
+    <div p="x5 y10 md:y0 md:b9">
       <form @submit.prevent="validation">
         <div class="e84c43">
           <div class="space-y-2.3">
             <div>
-              <input v-model="form.username" type="text" placeholder="نام *" class="r35kkr !wfull">
+              <input v-model="form.username" type="text" placeholder="نام *" class="r35kkr">
               <XyzTransition xyz="fade right">
                 <p v-if="form.usernameErr" class="b1v8d3">{{ form.usernameErr }}</p>
               </XyzTransition>
@@ -92,10 +92,10 @@ const validation = () => {
   </div>
 </template>
 
-<style scoped>
+<style>
 .g9b8ru {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
+  padding-bottom: 1.25rem;
+  padding-right: 1.25rem !important;
   --un-text-opacity: 1;
   color: rgba(75, 85, 99, var(--un-text-opacity));
 }
@@ -195,11 +195,15 @@ const validation = () => {
 }
 
 @media (min-width: 768px) {
+  .g9b8ru {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .c576cu {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: flex-end;
-    padding: 1.25rem;
   }
 }
 
