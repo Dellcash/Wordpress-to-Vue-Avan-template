@@ -27,41 +27,43 @@ const steps = ref([
 
 <template>
   <main>
-    <section class="bg-white pt10 pb5 px5 space-y10">
-      <div space-y-5>
-        <h1><strong text-2xl>کار خاص ما</strong></h1>
-        <p text="xs gray-600">{{ main.description }}{{ main.description }}</p>
-        <p text="xs gray-600">{{ main.description }}{{ main.description }}</p>
-      </div>
-
-      <div>
-        <h3><strong text-xl>فرآیند ما</strong></h3>
-
-        <div v-for="step in steps" :key="step" class="flex fw-bold items-center mt4">
-          <h6 :class="step.color">{{ step.step }}:</h6>
-          <h6 class="mr2 fw-100 text-sm tracking-.5px">{{ step.title }}</h6>
+    <section>
+      <div class="max-w-420px m-auto bg-white pt10 pb5 px5 space-y10 grid grid-cols-1">
+        <div space-y-5>
+          <h1><strong text-2xl>کار خاص ما</strong></h1>
+          <p text="xs gray-600">{{ main.description }}{{ main.description }}</p>
+          <p text="xs gray-600">{{ main.description }}{{ main.description }}</p>
         </div>
-      </div>
 
-      <div>
-        <h4><strong text-xl>نمودارهای تجزیه و تحلیل و آمار</strong></h4>
+        <div>
+          <h3><strong text-xl>فرآیند ما</strong></h3>
 
-        <div class="bg-#a092b3 pt5 pr2 mt5">
-          <ChartBar :height="400" />
+          <div v-for="step in steps" :key="step" class="flex fw-bold items-center mt4">
+            <h6 :class="step.color">{{ step.step }}:</h6>
+            <h6 class="mr2 fw-100 text-sm tracking-.5px">{{ step.title }}</h6>
+          </div>
         </div>
-      </div>
 
-      <div space-y-5>
-        <h4><strong text-lg>آن چه که تو گرفتی ؟​​​​​​​</strong></h4>
-        <p text="xs gray-600">{{ main.description }}{{ main.description }}</p>
+        <div>
+          <h4><strong text-xl>نمودارهای تجزیه و تحلیل و آمار</strong></h4>
+
+          <div class="bg-#a092b3 pt5 pr2 mt5">
+            <ChartBar :height="400" />
+          </div>
+        </div>
+
+        <div space-y-5>
+          <h4><strong text-lg>آن چه که تو گرفتی ؟​​​​​​​</strong></h4>
+          <p text="xs gray-600">{{ main.description }}{{ main.description }}</p>
+        </div>
       </div>
     </section>
 
-    <section class="bg-#00387a py5 px10 mt8">
-      <div text-white space-y5>
-        <h6><strong tracking-1px>آیا به پشتیبانی نیاز دارید !​​​​​​​</strong></h6>
+    <section>
+      <div class="max-w-420px m-auto bg-#00387a p10 mt8">
+        <div space-y3 text-white mb5>
+          <h6 mb7><strong tracking-1px>آیا به پشتیبانی نیاز دارید !​​​​​​​</strong></h6>
 
-        <div space-y3>
           <div class="flex items-center">
             <h6 text="gray sm" ml2>تلفن:</h6>
             <h6 text="#f26522 sm">۰۲۱۵۵۵۱۸۰۶۷</h6>
