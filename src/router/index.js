@@ -22,6 +22,12 @@ const router = createRouter({
       name: 'OurWork',
       component: () => import('../views/OurWork.vue'),
       meta: { title: 'چگونه ما کار می‌کنیم' }
+    },
+    {
+      path: '/services',
+      name: 'Services',
+      component: () => import('../views/Services.vue'),
+      meta: { title: 'اقتصاد' }
     }
   ]
 })

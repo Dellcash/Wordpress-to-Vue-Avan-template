@@ -1,5 +1,6 @@
 <script setup>
 import { useMain } from '../stores/main';
+import { useForm } from '../stores/form';
 import { Carousel, Slide } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
 import team1 from '../assets/ppl1.jpg'
@@ -12,6 +13,7 @@ import blog2 from '../assets/blog_2.jpg'
 import blog3 from '../assets/blog_3.jpg'
 
 const main = useMain()
+const form = useForm()
 
 const services = ref({
   part1: [
@@ -161,35 +163,35 @@ const blogPosts = ref([
           <p text-xs>{{ main.description }}</p>
         </div>
 
-        <form @submit.prevent="main.validation" class="unn7x1">
+        <form @submit.prevent="form.validation" class="unn7x1">
           <div flex>
             <div class="space-y-2.8">
               <div>
-                <input v-model="main.form.username" type="text" placeholder="نام *" class="r35kkr">
+                <input v-model="form.form.username" type="text" placeholder="نام *" class="r35kkr">
                 <XyzTransition xyz="fade right">
-                  <p v-if="main.form.usernameErr" class="b1v8d3">{{ main.form.usernameErr }}</p>
+                  <p v-if="form.form.usernameErr" class="b1v8d3">{{ form.form.usernameErr }}</p>
                 </XyzTransition>
               </div>
               <div>
-                <input v-model="main.form.email" type="email" placeholder="پست الکترونیک *" class="r35kkr">
+                <input v-model="form.form.email" type="email" placeholder="پست الکترونیک *" class="r35kkr">
                 <XyzTransition xyz="fade right">
-                  <p v-if="main.form.emailErr" class="b1v8d3">{{ main.form.emailErr }}</p>
+                  <p v-if="form.form.emailErr" class="b1v8d3">{{ form.form.emailErr }}</p>
                 </XyzTransition>
               </div>
               <div>
-                <input v-model="main.form.message" type="text" placeholder="موضوع" class="r35kkr">
+                <input v-model="form.form.message" type="text" placeholder="موضوع" class="r35kkr">
               </div>
             </div>
             <div mr3>
-              <textarea v-model="main.form.content" cols="25" rows="6" placeholder="پیغام *" class="r35kkr"></textarea>
+              <textarea v-model="form.form.content" cols="25" rows="6" placeholder="پیغام *" class="r35kkr"></textarea>
               <XyzTransition xyz="fade up">
-                <p v-if="main.form.contentErr" class="b1v8d3">{{ main.form.contentErr }}</p>
+                <p v-if="form.form.contentErr" class="b1v8d3">{{ form.form.contentErr }}</p>
               </XyzTransition>
             </div>
           </div>
 
           <button class="ev29ll">
-            <span v-if="!main.loading" text-xs>ارسال</span>
+            <span v-if="!form.loading" text-xs>ارسال</span>
             <div v-else i-carbon-circle-dash animate-spin class="hjn312" />
           </button>
         </form>

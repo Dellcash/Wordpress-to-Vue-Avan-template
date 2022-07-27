@@ -23,23 +23,23 @@ export const useMain = defineStore({
       services: [
         {
           title: 'مشاوره عالی',
-          link: '/'
+          link: '/services'
         },
         {
           title: 'مشاغل جهانی',
-          link: '#'
+          link: '/services'
         },
         {
           title: 'حسابرسی و بیمه',
-          link: '#'
+          link: '/services'
         },
         {
           title: 'مالیات و سهام',
-          link: '#'
+          link: '/services'
         },
         {
           title: 'اوراق قرضه وکالاها',
-          link: '#'
+          link: '/services'
         },
       ],
       part2: [
@@ -58,47 +58,12 @@ export const useMain = defineStore({
       ]
     },
     description: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.',
-    loading: false,
-    form: {
-      username: '',
-      usernameErr: '',
-      email: '',
-      emailErr: '',
-      message: '',
-      content: '',
-      contentErr: '',
-    },
   }),
   actions: {
-    validation() {
-      if (this.form.username === '') {
-        this.form.usernameErr = 'نام کاربری خود را وارد کنید!'
-      } else {
-        this.form.usernameErr = ''
-      }
-      if (this.form.email === '') {
-        this.form.emailErr = 'ایمیل خود را وارد کنید!'
-      } else {
-        this.form.emailErr = ''
-      }
-      if (this.form.content === '') {
-        this.form.contentErr = 'پیغام خود را بگذارید!'
-      } else {
-        this.form.contentErr = ''
-      }
+    toFarsiNumber(n) {
+      const farsiDigits = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
 
-      if (this.form.username !== '' && this.form.email !== '' && this.form.content !== '') {
-        this.loading = true
-
-        setTimeout(() => {
-          this.form.username = ''
-          this.form.email = ''
-          this.form.message = ''
-          this.form.content = ''
-          this.loading = false
-        }, 2000);
-      }
+      return n.toString().replace(/\d/g, (x) => farsiDigits[x]);
     }
-
   }
 })

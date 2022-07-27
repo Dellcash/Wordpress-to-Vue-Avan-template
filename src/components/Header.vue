@@ -1,6 +1,9 @@
 <script setup>
 import { useMain } from '../stores/main'
+import { useForm } from '../stores/form'
+
 const main = useMain()
+const from = useForm()
 const socials = ref(['i-carbon-media-cast', 'i-carbon-logo-linkedin', 'i-carbon-logo-twitter', 'i-carbon-logo-instagram'])
 </script>
 
