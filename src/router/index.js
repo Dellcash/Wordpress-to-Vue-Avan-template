@@ -28,6 +28,12 @@ const router = createRouter({
       name: 'Services',
       component: () => import('../views/Services.vue'),
       meta: { title: 'اقتصاد' }
+    },
+    {
+      path: '/shop',
+      name: 'Shop',
+      component: () => import('../views/shop/Shop.vue'),
+      meta: { title: 'محصولات' }
     }
   ]
 })

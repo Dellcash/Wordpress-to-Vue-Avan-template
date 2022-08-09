@@ -45,7 +45,7 @@ export const useMain = defineStore({
       part2: [
         {
           title: 'فروشگاه',
-          link: '#'
+          link: '/shop'
         },
         {
           title: 'وبلاگ',
