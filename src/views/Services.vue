@@ -119,7 +119,6 @@ main {
 
   @media (min-width: 768px) {
     padding: 2.5rem !important;
-
   }
 
   @media (min-width: 1280px) {
@@ -216,7 +215,6 @@ main {
           --un-text-opacity: 1;
           color: rgba(156, 163, 175, var(--un-text-opacity));
         }
-
       }
     }
 
@@ -273,7 +271,6 @@ main {
         @media (min-width: 1280px) {
           margin-right: 0rem;
         }
-
       }
     }
 
