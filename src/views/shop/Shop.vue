@@ -166,6 +166,17 @@ const sortingTitle = ref(['جدیدترین', 'پرفروش‌ترین', 'پرب
 const byLabel = (sortKey) => {
   return database.value.filter(item => item.label === sortKey)
 }
+
+const langEn = ref('')
+const langFa = ref('')
+const byLang = reactive({
+  byEn: () => {
+    return database.value.filter(item => item.lang === 'انگلیسی')
+  },
+  byFa: () => {
+    return database.value.filter(item => item.lang === 'فارسی')
+  }
+})
 </script>
 
 <template>
@@ -197,27 +208,30 @@ const byLabel = (sortKey) => {
 
           <h1 :key="7" class="text-base !mt5 font-bold">زبان</h1>
           <div :key="8" class="!mt3 !my1 flex items-center">
-            <input type="checkbox" id="en" p5>
+            <input v-model="langEn" @change="data = byLang.byEn()" type="checkbox" id="en">
             <label for="en" class="text-gray-600 text-xs mr2">انگلیسی</label>
           </div>
           <div :key="9" flex items-center>
-            <input type="checkbox" id="ir">
+            <input v-model="langFa" @change="data = byLang.byFa()" type="checkbox" id="ir">
             <label for="ir" class="text-gray-600 text-xs mr2">فارسی</label>
           </div>
         </XyzTransitionGroup>
       </aside>
 
       <div xl="col-start-4 col-end-13">
-        <div class="mb5 flex flex-col items-start xl:flex-row xl:items-center">
-          <h5 class="text-12px font-bold text-gray-600 mb-2 tracking-1px xl:mb0">مرتب‌‌‌سازی بر اساس</h5>
-          <select v-model="sortType" @change="data = byLabel(sortType)" name="sorting" id="sort"
+
+        <XyzTransitionGroup appear xyz="fade right-100% appear-stagger"
+          class="mb5 flex flex-col items-start xl:flex-row xl:items-center">
+          <h5 :key="1" class="text-12px font-bold text-gray-600 mb-2 tracking-1px xl:mb0">مرتب‌‌‌سازی بر اساس</h5>
+          <select :key="2" v-model="sortType" @change="data = byLabel(sortType)" name="sorting" id="sort"
             class="wfull text-12px text-gray-500 p1 border focus:outline-none md:w48% xl:w25% xl:mr3">
             <option value="" disabled selected hidden>طبقه بندی</option>
             <option v-for="title in sortingTitle" :value="title" class="text-12px text-gray-800 !cursor-pointer">{{
                 title
             }}</option>
           </select>
-        </div>
+        </XyzTransitionGroup>
+
         <XyzTransition appear xyz="fade duration-10">
           <div class="grid grid-cols-2 gap5 md:gap7">
             <div v-for="item in data" :key="item.id">
