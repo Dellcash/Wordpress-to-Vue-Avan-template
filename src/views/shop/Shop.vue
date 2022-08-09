@@ -161,10 +161,10 @@ const byCategory = ref([
 const search = ref([0, 66500])
 const filterProducts = useArrayFilter(search, item => item.price)
 
-const selected = ref('')
+const sortType = ref('')
 const sortingTitle = ref(['جدیدترین', 'پرفروش‌ترین', 'پربیننده‌ترین'])
-const filteredLabel = () => {
-  return database.value.filter(item => item.label === 'پربیننده‌ترین')
+const byLabel = (sortKey) => {
+  return database.value.filter(item => item.label === sortKey)
 }
 </script>
 
@@ -173,7 +173,7 @@ const filteredLabel = () => {
     <section class="p5 hfull max-w-420px md:max-w-768px xl:max-w-85% xl:grid xl:grid-cols-12 xl:p0 xl:py18">
       <aside class="hidden xl:block col-span-3">
         <XyzTransition appear xyz="fade up-100%">
-          <h1 class="text-lg">دسته بندی</h1>
+          <h1 class="text-lg font-bold">دسته بندی</h1>
         </XyzTransition>
 
         <XyzTransitionGroup appear xyz="fade right-100% appear-stagger" class="flex flex-col items-start mt3 space-y1">
@@ -195,7 +195,7 @@ const filteredLabel = () => {
               تومان <span>-</span></label>
           </div>
 
-          <h1 :key="7" class="text-base !mt5">زبان</h1>
+          <h1 :key="7" class="text-base !mt5 font-bold">زبان</h1>
           <div :key="8" class="!mt3 !my1 flex items-center">
             <input type="checkbox" id="en" p5>
             <label for="en" class="text-gray-600 text-xs mr2">انگلیسی</label>
@@ -208,10 +208,13 @@ const filteredLabel = () => {
       </aside>
 
       <div xl="col-start-4 col-end-13">
-        <div>
-          <select v-model="selected" name="sorting" id="sort" @change="data = filteredLabel()">
-            <option v-for="sort in sortingTitle" :value="sort">{{
-                sort
+        <div class="mb5 flex flex-col items-start xl:flex-row xl:items-center">
+          <h5 class="text-12px font-bold text-gray-600 mb-2 tracking-1px xl:mb0">مرتب‌‌‌سازی بر اساس</h5>
+          <select v-model="sortType" @change="data = byLabel(sortType)" name="sorting" id="sort"
+            class="wfull text-12px text-gray-500 p1 border focus:outline-none md:w48% xl:w25% xl:mr3">
+            <option value="" disabled selected hidden>طبقه بندی</option>
+            <option v-for="title in sortingTitle" :value="title" class="text-12px text-gray-800 !cursor-pointer">{{
+                title
             }}</option>
           </select>
         </div>
@@ -264,6 +267,10 @@ const filteredLabel = () => {
   label:last-child span {
     color: transparent
   }
+}
+
+input[type=checkbox] {
+  zoom: 1.2;
 }
 </style>
 
