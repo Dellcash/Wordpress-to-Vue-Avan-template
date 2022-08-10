@@ -34,12 +34,18 @@ const router = createRouter({
       name: 'Shop',
       component: () => import('../views/shop/Shop.vue'),
       meta: { title: 'محصولات' }
+    },
+    {
+      path: '/shop/:id',
+      name: 'Item',
+      component: () => import('../views/shop/Item.vue'),
+      meta: { title: '. . .' }
     }
   ]
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = `${to.meta.title} | قالب آوان`
+  document.title = `${to.meta.title} | فروشگاه آوان`
   next()
 })
 

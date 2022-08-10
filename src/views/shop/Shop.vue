@@ -1,76 +1,13 @@
 <script setup>
 import { useOffsetPagination, useArrayFilter } from '@vueuse/core'
+import { useMain } from '@/stores/main'
+import { useShop } from '@/stores/shop';
 import Slider from '@vueform/slider'
-import img1 from '@/assets/shop_1.jpg'
-import img2 from '@/assets/shop_2.jpg'
-import img3 from '@/assets/shop_3.jpg'
-import img4 from '@/assets/shop_4.jpg'
-import img5 from '@/assets/shop_5.jpg'
-import img6 from '@/assets/shop_6.jpg'
 
+const main = useMain()
+const shop = useShop()
 const data = ref([])
-const database = ref([
-  {
-    id: 3,
-    img: img3,
-    title: 'راهنما باشید',
-    link: '#',
-    price: '23900',
-    category: 'مالی',
-    lang: 'فارسی',
-    label: 'پربیننده‌ترین'
-  },
-  {
-    id: 4,
-    img: img4,
-    title: 'گزارش سالانه',
-    link: '#',
-    price: '66500',
-    category: 'اقتصاد',
-    lang: 'انگلیسی',
-    label: 'جدیدترین'
-  },
-  {
-    id: 5,
-    img: img5,
-    title: 'مثل یک رییس فکر کن',
-    link: '#',
-    price: '40000',
-    category: 'مالی',
-    lang: 'انگلیسی',
-    label: 'پربیننده‌ترین'
-  },
-  {
-    id: 6,
-    img: img6,
-    title: 'فکر هوشمندانه سخت نیست',
-    link: '#',
-    price: '100000',
-    category: 'سفر و کشف',
-    lang: 'انگلیسی',
-    label: 'جدیدترین'
-  },
-  {
-    id: 1,
-    img: img1,
-    title: 'راه‌اندازی کسب و کار',
-    link: '#',
-    price: '120000',
-    category: 'اقتصاد',
-    lang: 'انگلیسی',
-    label: 'پرفروش‌ترین'
-  },
-  {
-    id: 2,
-    img: img2,
-    title: 'مدیریت زمان',
-    link: '#',
-    price: '35000',
-    category: 'سفر و کشف',
-    lang: 'انگلیسی',
-    label: 'جدیدترین'
-  },
-])
+const database = shop.database
 const page = ref(1)
 const pageSize = ref(4)
 
@@ -78,7 +15,7 @@ function fetch(page, pageSize) {
   return new Promise((resolve, reject) => {
     const start = (page - 1) * pageSize
     const end = start + pageSize
-    resolve(database.value.slice(start, end))
+    resolve(database.slice(start, end))
   })
 }
 
@@ -101,22 +38,12 @@ const {
   prev,
   next,
 } = useOffsetPagination({
-  total: database.value.length,
+  total: database.length,
   page: 1,
   pageSize,
   onPageChange: fetchData,
   onPageSizeChange: fetchData,
 })
-
-const toFarsiNumber = (n) => {
-  const farsiDigits = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
-
-  return n.toString().replace(/\d/g, (x) => farsiDigits[x]);
-}
-
-const numberWithCommas = (x) => {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
 
 const paginate = ref(true)
 const activeCategory = ref('')
@@ -195,12 +122,12 @@ const byLang = reactive({
           </button>
 
           <div :key="5" class="p27hws">
-            <Slider id="search" :lazy="false" v-model="search" :min="100" :max="200000" showTooltip="focus"
+            <Slider id="search" :lazy="false" v-model="search" :min="100" :max="200000" showTooltip="drag"
               :disabled="true" direction="rtl" />
           </div>
           <div :key="6" class="o36jn2">
             <label for="search" v-for="price in search" :key="price" text="xs gray-600">{{
-                toFarsiNumber(numberWithCommas((price)))
+                main.toFarsiNumber(main.numberWithCommas((price)))
             }}
               تومان <span>-</span></label>
           </div>
@@ -228,11 +155,13 @@ const byLang = reactive({
 
         <div class="vk7q89">
           <div v-for="item in data" :key="item.id">
-            <img :src="item.img" :alt="item.title">
+            <router-link :to="`/shop/${item.id}`">
+              <img :src="item.img" :alt="item.title">
+            </router-link>
             <div class="u8jwx5">
               <h6 text="sm md:text-base">{{ item.title }}</h6>
-              <h6 class="qbpzm0">{{ toFarsiNumber(numberWithCommas(item.price)) }} تومان</h6>
-              <router-link :to="item.link" class="m561bo">افزودن به سبد خرید</router-link>
+              <h6 class="qbpzm0">{{ main.toFarsiNumber(main.numberWithCommas(item.price)) }} تومان</h6>
+              <router-link :to="`/shop/${item.id}`" class="m561bo">افزودن به سبد خرید</router-link>
             </div>
           </div>
         </div>
@@ -243,7 +172,7 @@ const byLang = reactive({
           </button>
           <button v-for="item in pageCount" :key="item" :disabled="currentPage === item" @click="currentPage = item"
             :class="currentPage === item ? 'v812d1' : ''">
-            {{ toFarsiNumber(item) }}
+            {{ main.toFarsiNumber(item) }}
           </button>
           <button v-if="!isLastPage" :disabled="isLastPage" @click="next">
             بعدی
@@ -448,6 +377,7 @@ main {
         img {
           width: 100%;
           transition-duration: 250ms;
+          cursor: pointer;
 
           &:hover {
             --un-invert: invert(0.1);

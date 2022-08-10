@@ -1,16 +1,11 @@
 <script setup>
 import { Carousel, Slide } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
-import team1 from '../assets/ppl1.jpg'
-import team2 from '../assets/ppl2.jpg'
-import team3 from '../assets/ppl3.jpg'
-import team4 from '../assets/ppl4.jpg'
-import team5 from '../assets/ppl5.jpg'
+import { useMain } from '../stores/main';
 
 const description = ref('لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.')
 const socials = ref(['i-carbon-media-cast', 'i-carbon-logo-linkedin', 'i-carbon-logo-twitter', 'i-carbon-logo-instagram'])
-const teams = ref([team1, team2, team3, team4, team5])
-
+const main = useMain()
 </script>
 
 <template>
@@ -31,7 +26,7 @@ const teams = ref([team1, team2, team3, team4, team5])
 
       <div p="3 xl:0">
         <Carousel :autoplay="2000" :wrap-around="true">
-          <Slide v-for="team in teams" :key="team">
+          <Slide v-for="team in main.teams" :key="team">
             <img :src="team" alt="team members" class="d2ez9h">
           </Slide>
         </Carousel>

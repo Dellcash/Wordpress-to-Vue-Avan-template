@@ -1,26 +1,23 @@
 <script setup>
 import { useMain } from '../stores/main';
-import step1 from '../assets/step_1.jpg'
-import step2 from '../assets/step_2.jpg'
-import step3 from '../assets/step_3.jpg'
 
 const main = useMain()
 
 const steps = ref([
   {
-    img: step1,
+    img: main.steps.step1,
     step: 'مرحله ۱',
     title: 'دریافت و ارزیابی',
     color: 'text-#00a651',
   },
   {
-    img: step2,
+    img: main.steps.step2,
     step: 'مرحله ۲',
     title: 'آنالیز و برنامه‌ریزی',
     color: 'text-#f26522',
   },
   {
-    img: step3,
+    img: main.steps.step3,
     step: 'مرحله ۳',
     title: 'پیاده‌سازی',
     color: 'text-#00387a',

@@ -3,14 +3,6 @@ import { useMain } from '../stores/main';
 import { useForm } from '../stores/form';
 import { Carousel, Slide } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
-import team1 from '../assets/ppl1.jpg'
-import team2 from '../assets/ppl2.jpg'
-import team3 from '../assets/ppl3.jpg'
-import team4 from '../assets/ppl4.jpg'
-import team5 from '../assets/ppl5.jpg'
-import blog1 from '../assets/blog_1.jpg'
-import blog2 from '../assets/blog_2.jpg'
-import blog3 from '../assets/blog_3.jpg'
 
 const main = useMain()
 const form = useForm()
@@ -36,21 +28,21 @@ const services = ref({
   ],
   part2: ['ممیزی و تضمین', 'معاملات و سهام', 'مشاوره مالی', 'برنامه ریزی استراتژیک', 'اوراق قرضه و کالاها', 'پیش بینی های مالی']
 })
-const teams = ref([team1, team2, team3, team4, team5])
+const teams = main.teams
 
 const blogPosts = ref([
   {
-    img: blog1,
+    img: main.blogs.blog1,
     title: 'چرا برای آموزش مالی هزینه کنیم',
     date: '۱۰ دی ۹۸'
   },
   {
-    img: blog2,
+    img: main.blogs.blog2,
     title: 'طرح هایی برای رشد کسب و کار شما',
     date: '۱۰ دی ۹۸'
   },
   {
-    img: blog3,
+    img: main.blogs.blog3,
     title: 'یک مشاور خوب چه ویژگی هایی دارد ؟',
     date: '۱۲ آذر ۹۷'
   }
