@@ -27,7 +27,7 @@ export const useForm = defineStore({
         this.form.emailErr = ''
       }
       if (this.form.content === '') {
-        this.form.contentErr = 'پیغام خود را بگذارید!'
+        this.form.contentErr = 'عنوان خود را بگذارید!'
       } else {
         this.form.contentErr = ''
       }
