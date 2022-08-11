@@ -1,12 +1,13 @@
 <script setup>
+import { useTitle, useToggle } from '@vueuse/core';
 import { useShop } from '@/stores/shop';
-import { useTitle } from '@vueuse/core';
 import { useMain } from '@/stores/main';
 
 const route = useRoute()
 const shop = useShop()
 const title = useTitle()
 const main = useMain()
+const [value, toggle] = useToggle()
 
 const item = shop.getItem(route.params.id)
 title.value = `${item.title} | فروشگاه آوان`;
@@ -48,6 +49,8 @@ const details = ref([
     sub: '۷۷۵۹'
   },
 ])
+
+
 </script>
 
 <template>
@@ -92,9 +95,28 @@ const details = ref([
             <h6 text-xs>هنوز نظری ثبت نشده</h6>
             <h3 font-bold>اولین نفری باشید که نظر می‌دهید</h3>
           </div>
-          <button class="text-xs bg-blue-500 rounded-lg px-8 py2.5 text-white duration-250 hover:opacity-60">ثبت
+          <button @click="toggle()"
+            class="text-xs bg-blue-500 rounded-xl px-8 py2.5 text-white duration-250 hover:opacity-60">ثبت
             نظر</button>
         </div>
+      </div>
+
+      <!-- MODAL -->
+      <div>
+        <XyzTransition appear xyz="fade" class="fixed block top-0 left-0 w-[100%] h-[100%] bg-[rgba(0,0,0,0.8)] z-9999">
+          <div v-if="value" @click="toggle()" />
+        </XyzTransition>
+
+        <XyzTransition appear xyz="fade  small">
+          <div v-if="value" class="bg-white fixed inset-10 shadow z-9999 rounded-sm sm:mt-15">
+            <div class="flex items-center justify-between p-2 sm:mb-2">
+              <p text-10px sm:text-14px>نظر شما راجب این محصول چیست؟</p>
+              <button @click="toggle()">
+                <span sm:text-20px>&#9747;</span>
+              </button>
+            </div>
+          </div>
+        </XyzTransition>
       </div>
     </section>
   </main>
