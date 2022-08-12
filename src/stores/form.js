@@ -3,7 +3,9 @@ import { defineStore } from 'pinia'
 export const useForm = defineStore({
   id: 'form',
   state: () => ({
+    modal: false,
     loading: false,
+    success: false,
     form: {
       username: '',
       usernameErr: '',
@@ -41,8 +43,14 @@ export const useForm = defineStore({
           this.form.message = ''
           this.form.content = ''
           this.loading = false
+          this.modal = false
+          this.success = true
         }, 2000);
       }
+
+      setTimeout(() => {
+        this.success = false;
+      }, 5000);
     }
   }
 })
