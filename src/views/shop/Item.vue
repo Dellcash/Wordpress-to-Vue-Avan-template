@@ -17,6 +17,7 @@ const price = computed(() => {
   return main.toFarsiNumber(main.numberWithCommas(item.price))
 })
 
+
 const description = ref(true);
 const comment = ref(false);
 const descBtn = () => {
@@ -71,7 +72,10 @@ const ratingStar = (star) => {
             <p class="w573pd">{{ main.description }}</p>
           </div>
 
-          <button class="lgd4wg">افزودن به سبد خرید</button>
+          <button @click="shop.addToCart(item)" class="lgd4wg">
+            <span v-if="!shop.addLoading">افزودن به سبد خرید</span>
+            <span v-else>. . .</span>
+          </button>
         </div>
       </div>
       <div p="5 t0 b10 xl:10 xl:t0">

@@ -1,10 +1,24 @@
 <script setup>
 import { useMain } from '../stores/main'
-import { useForm } from '../stores/form'
+import { useShop } from '../stores/shop';
+import { useRouter } from 'vue-router';
 
 const main = useMain()
-const form = useForm()
+const shop = useShop()
+const router = useRouter()
+
 const socials = ref(['i-carbon-media-cast', 'i-carbon-logo-linkedin', 'i-carbon-logo-twitter', 'i-carbon-logo-instagram'])
+
+const closeSideCart = () => {
+  shop.sideCart = false
+}
+const count = computed(() => {
+  return main.toFarsiNumber(shop.count)
+})
+
+onMounted(() => {
+  router.afterEach(closeSideCart)
+})
 </script>
 
 <template>
@@ -27,9 +41,9 @@ const socials = ref(['i-carbon-media-cast', 'i-carbon-logo-linkedin', 'i-carbon-
         <h1 text-white>نام شرکت</h1>
       </div>
 
-      <div class="n9s3hs">
+      <div @click="shop.sideCart = true" class="n9s3hs">
         <div class="x1bevm" />
-        <span class="r26vfk">۱</span>
+        <span class="r26vfk">{{ count }}</span>
       </div>
 
       <div class="p7v3cs">
@@ -90,9 +104,9 @@ const socials = ref(['i-carbon-media-cast', 'i-carbon-logo-linkedin', 'i-carbon-
           </div>
         </div>
 
-        <div class="t0d48p">
+        <div @click="shop.sideCart = true" class="t0d48p">
           <div class="x1bevm" />
-          <span class="fmdpc7">۱</span>
+          <span class="fmdpc7">{{ count }}</span>
         </div>
 
         <div class="o92dur">
@@ -104,6 +118,7 @@ const socials = ref(['i-carbon-media-cast', 'i-carbon-logo-linkedin', 'i-carbon-
   </header>
 
   <Sidebar />
+  <SideCart v-if="shop.sideCart" />
 </template>
 
 <style scoped>

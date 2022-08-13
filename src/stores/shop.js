@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { useStorage } from '@vueuse/core'
 // 
 import shop1 from '@/assets/shop_1.jpg'
 import shop2 from '@/assets/shop_2.jpg'
@@ -10,7 +11,6 @@ import shop6 from '@/assets/shop_6.jpg'
 export const useShop = defineStore({
   id: 'shop',
   state: () => ({
-    // shops: { shop1, shop2, shop3, shop4, shop5, shop6 },
     database: [
       {
         id: 3,
@@ -66,7 +66,10 @@ export const useShop = defineStore({
         lang: 'انگلیسی',
         label: 'جدیدترین'
       },
-    ]
+    ],
+    cart: useStorage('cart', []),
+    sideCart: false,
+    addLoading: false
   }),
   getters: {
     getItem: (state) => {
@@ -74,5 +77,27 @@ export const useShop = defineStore({
         return state.database.filter(item => item.id == id)[0]
       }
     },
+    count(state) {
+      return state.cart.length
+    }
+  },
+  actions: {
+    addToCart(product) {
+      this.addLoading = true
+      setTimeout(() => {
+        const item = this.cart.find(p => p.id === product.id)
+        if (!item) {
+          this.cart.push({
+            ...product,
+            quantity: 1
+          })
+        } else {
+          item.quantity++
+        }
+
+        this.addLoading = false
+        this.sideCart = true
+      }, 2000);
+    }
   }
 })
