@@ -82,6 +82,11 @@ export const useShop = defineStore({
     },
     allItems(state) {
       return state.cart
+    },
+    totalAmount(state) {
+      return state.cart.reduce((total, product) => {
+        return total + product.price * product.quantity
+      }, 0)
     }
   },
   actions: {

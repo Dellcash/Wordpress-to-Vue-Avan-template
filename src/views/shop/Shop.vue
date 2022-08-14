@@ -15,7 +15,7 @@ function fetch(page, pageSize) {
   return new Promise((resolve, reject) => {
     const start = (page - 1) * pageSize
     const end = start + pageSize
-    resolve(database.slice(start, end))
+    resolve(shop.database.slice(start, end))
   })
 }
 
@@ -54,7 +54,7 @@ const byCategory = ref([
   {
     title: 'همه',
     function: () => {
-      const byCategory = useArrayFilter(database.value.slice(1, 5), i => i.category)
+      const byCategory = useArrayFilter(shop.database.slice(1, 5), i => i.category)
       paginate.value = true
       return byCategory.value
     },
@@ -62,7 +62,7 @@ const byCategory = ref([
   {
     title: 'مالی',
     function: () => {
-      const byCategory = useArrayFilter(database, i => i.category === 'مالی')
+      const byCategory = useArrayFilter(shop.database, i => i.category === 'مالی')
       paginate.value = false
       return byCategory.value
     },
@@ -70,7 +70,7 @@ const byCategory = ref([
   {
     title: 'سفر و کشف',
     function: () => {
-      const byCategory = useArrayFilter(database, i => i.category === 'سفر و کشف')
+      const byCategory = useArrayFilter(shop.database, i => i.category === 'سفر و کشف')
       paginate.value = false
       return byCategory.value
     },
@@ -78,7 +78,7 @@ const byCategory = ref([
   {
     title: 'کتاب‌های اقتصاد',
     function: () => {
-      const byCategory = useArrayFilter(database, i => i.category === 'اقتصاد')
+      const byCategory = useArrayFilter(shop.database, i => i.category === 'اقتصاد')
       paginate.value = false
       return byCategory.value
     }
@@ -91,17 +91,17 @@ const filterProducts = useArrayFilter(search, item => item.price)
 const sortType = ref('')
 const sortingTitle = ref(['جدیدترین', 'پرفروش‌ترین', 'پربیننده‌ترین'])
 const byLabel = (sortKey) => {
-  return database.value.filter(item => item.label === sortKey)
+  return shop.database.filter(item => item.label === sortKey)
 }
 
 const langEn = ref('')
 const langFa = ref('')
 const byLang = reactive({
   byEn: () => {
-    return database.value.filter(item => item.lang === 'انگلیسی')
+    return shop.database.filter(item => item.lang === 'انگلیسی')
   },
   byFa: () => {
-    return database.value.filter(item => item.lang === 'فارسی')
+    return shop.database.filter(item => item.lang === 'فارسی')
   }
 })
 </script>
@@ -161,10 +161,7 @@ const byLang = reactive({
             <div class="u8jwx5">
               <h6 text="sm md:text-base">{{ item.title }}</h6>
               <h6 class="qbpzm0">{{ main.toFarsiNumber(main.numberWithCommas(item.price)) }} تومان</h6>
-              <button @click="shop.addToCart(item)" class="m561bo">
-                <span v-if="!shop.addLoading">افزودن به سبد خرید</span>
-                <span v-else>. . .</span>
-              </button>
+              <router-link :to="`/shop/${item.id}`" class="m561bo">مشاهده جزئیات</router-link>
             </div>
           </div>
         </div>
@@ -355,10 +352,10 @@ main {
           .m561bo {
             --un-bg-opacity: 1;
             background-color: rgba(242, 101, 34, var(--un-bg-opacity));
-            padding-left: 1rem;
-            padding-right: 1rem;
-            padding-top: 0.375rem;
-            padding-bottom: 0.375rem;
+            padding-left: 1.7rem;
+            padding-right: 1.7rem;
+            padding-top: 0.475rem;
+            padding-bottom: 0.475rem;
             font-size: 0.75rem;
             line-height: 1rem;
             --un-text-opacity: 1;
@@ -368,6 +365,10 @@ main {
             &:hover {
               --un-bg-opacity: 1;
               background-color: rgba(0, 56, 122, var(--un-bg-opacity));
+            }
+
+            @media(min-width: 640px) {
+              letter-spacing: 1px;
             }
           }
         }

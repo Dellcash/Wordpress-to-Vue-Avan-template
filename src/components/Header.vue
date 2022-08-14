@@ -77,7 +77,7 @@ onMounted(() => {
           </div>
 
           <div relative>
-            <div class="j1e5hu" @mouseover="main.servicesBtn = true">
+            <div class="j1e5hu" @mouseover="main.servicesBtn = true" @mouseout="main.servicesBtn = false">
               <button class="m9zpfl">خدمات</button>
               <div class="o2mnln" />
             </div>
