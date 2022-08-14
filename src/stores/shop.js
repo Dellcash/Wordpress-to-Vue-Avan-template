@@ -79,6 +79,9 @@ export const useShop = defineStore({
     },
     count(state) {
       return state.cart.length
+    },
+    allItems(state) {
+      return state.cart
     }
   },
   actions: {

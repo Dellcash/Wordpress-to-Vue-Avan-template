@@ -161,7 +161,10 @@ const byLang = reactive({
             <div class="u8jwx5">
               <h6 text="sm md:text-base">{{ item.title }}</h6>
               <h6 class="qbpzm0">{{ main.toFarsiNumber(main.numberWithCommas(item.price)) }} تومان</h6>
-              <router-link :to="`/shop/${item.id}`" class="m561bo">افزودن به سبد خرید</router-link>
+              <button @click="shop.addToCart(item)" class="m561bo">
+                <span v-if="!shop.addLoading">افزودن به سبد خرید</span>
+                <span v-else>. . .</span>
+              </button>
             </div>
           </div>
         </div>
