@@ -73,7 +73,7 @@ const ratingStar = (star) => {
           </div>
 
           <button @click="shop.addToCart(item)" class="lgd4wg">
-            <span v-if="!shop.addLoading">افزودن به سبد خرید</span>
+            <span v-if="!shop.addLoading" text-xs>افزودن به سبد خرید</span>
             <span v-else>. . .</span>
           </button>
         </div>

@@ -63,16 +63,18 @@ const leave = (el) => {
 
             <Transition name="expand" @enter="enter" @after-enter="afterEnter" @leave="leave">
               <div v-if="main.servicesBtn" class="d3rafd">
-                <RouterLink :to="service.link" v-for="service in main.links.services" :key="service" class="m1bmsc">{{
-                    service.title
-                }}
+                <RouterLink :to="service.link" v-for="service in main.links.services" :key="service"
+                  @click="main.toggled = false" class="m1bmsc">{{
+                      service.title
+                  }}
                 </RouterLink>
               </div>
             </Transition>
           </div>
 
           <div class="ikwtbb">
-            <RouterLink :to="link.link" v-for="link in main.links.part2" :key="link" class="rhht62">{{ link.title }}
+            <RouterLink :to="link.link" v-for="link in main.links.part2" :key="link" @click="main.toggled = false"
+              class="rhht62">{{ link.title }}
             </RouterLink>
           </div>
         </div>

@@ -77,13 +77,14 @@ onMounted(() => {
           </div>
 
           <div relative>
-            <div class="j1e5hu" @mouseover="main.servicesBtn = true" @mouseout="main.servicesBtn = false">
+            <div class="j1e5hu" @mouseover="main.servicesBtn = true">
               <button class="m9zpfl">خدمات</button>
               <div class="o2mnln" />
             </div>
 
             <XyzTransition>
-              <div v-if="main.servicesBtn" @mouseleave="main.servicesBtn = false" class="e3v947" xyz="fade">
+              <div v-if="main.servicesBtn" @mouseleave="main.servicesBtn = false" @click="main.servicesBtn = false"
+                class="e3v947" xyz="fade">
                 <button v-for="service in main.links.services" :key="service">
                   <RouterLink :to="service.link" class="e1q20h">{{
                       service.title

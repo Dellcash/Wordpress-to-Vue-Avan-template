@@ -106,6 +106,21 @@ export const useShop = defineStore({
         this.addLoading = false
         this.sideCart = true
       }, 2000);
-    }
+    },
+    removeItem(id) {
+      this.cart = this.cart.filter(product => product.id != id)
+    },
+    increment(id) {
+      const item = this.cart.find(i => i.id == id)
+      if (item) {
+        item.quantity++
+      }
+    },
+    decrement(id) {
+      const item = this.cart.find(i => i.id == id)
+      if (item) {
+        item.quantity--
+      }
+    },
   }
 })
