@@ -40,6 +40,12 @@ const router = createRouter({
       name: 'Item',
       component: () => import('../views/shop/Item.vue'),
       meta: { title: '. . .' }
+    },
+    {
+      path: '/shopping-cart',
+      name: 'ShoppingCart',
+      component: () => import('../views/shop/ShoppingCart.vue'),
+      meta: { title: 'سبد خرید' }
     }
   ]
 })

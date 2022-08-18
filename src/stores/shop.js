@@ -69,7 +69,8 @@ export const useShop = defineStore({
     ],
     cart: useStorage('cart', []),
     sideCart: false,
-    addLoading: false
+    addLoading: false,
+    removeLoading: false
   }),
   getters: {
     getItem: (state) => {
@@ -108,7 +109,11 @@ export const useShop = defineStore({
       }, 2000);
     },
     removeItem(id) {
-      this.cart = this.cart.filter(product => product.id != id)
+      this.removeLoading = true
+      setTimeout(() => {
+        this.cart = this.cart.filter(product => product.id != id)
+        this.removeLoading = false
+      }, 2000);
     },
     increment(id) {
       const item = this.cart.find(i => i.id == id)
@@ -118,7 +123,7 @@ export const useShop = defineStore({
     },
     decrement(id) {
       const item = this.cart.find(i => i.id == id)
-      if (item) {
+      if (item.quantity > 1) {
         item.quantity--
       }
     },

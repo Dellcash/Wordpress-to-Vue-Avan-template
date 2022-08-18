@@ -227,7 +227,8 @@ const leave = (el) => {
 }
 
 .d3rafd {
-  margin-right: 2.5rem;
+  /* margin-right: 2.5rem; */
+  text-indent: 2.5rem;
   display: flex;
   flex-direction: column;
 }

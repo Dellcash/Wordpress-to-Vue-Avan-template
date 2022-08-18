@@ -32,4 +32,12 @@ input[type=checkbox] {
 .fade-leave-to {
   opacity: 0;
 }
+
+button:focus {
+  outline: 0;
+}
+
+a:focus {
+  outline: 0
+}
 </style>
