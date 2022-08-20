@@ -28,7 +28,7 @@ onMounted(() => {
       <div class="tvp50m">
         <div v-for="social in socials" :key="social" :class="social" class="i5g084" />
       </div>
-      <p class="bpjgu8">ساعات پاسخگویی : شنبه تا جمعه - ساعت 8 صبح تا 9 بعد از ظهر</p>
+      <p class="bpjgu8">ساعات پاسخگویی : شنبه تا جمعه - ساعت ۸ صبح تا ۹ بعد از ظهر</p>
     </section>
 
     <!-- 2nd section -->
