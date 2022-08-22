@@ -59,9 +59,9 @@ const totalPrice = () => main.toFarsiNumber(main.numberWithCommas(shop.totalAmou
             <span class="uhlai6">{{ totalPrice() }} تومان</span>
           </div>
           <div class="q36rnj">
-            <router-link to="/shopping-cart" class="wotszm">مشاهده سبد خرید</router-link>
+            <router-link to="/shop/shopping-cart" class="wotszm">مشاهده سبد خرید</router-link>
             <span mx1></span>
-            <router-link to="#" class="wotszm">تسویه حساب</router-link>
+            <router-link to="/shop/checkout" class="wotszm">تسویه حساب</router-link>
           </div>
         </footer>
       </div>

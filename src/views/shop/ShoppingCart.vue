@@ -109,7 +109,7 @@ const main = useMain()
           پیش
           فاکتور
         </router-link>
-        <router-link to="#" class="qfe555">
+        <router-link to="/shop/checkout" class="qfe555">
           ثبت
           سفارش
         </router-link>

@@ -33,7 +33,7 @@ const router = createRouter({
       path: '/shop',
       name: 'Shop',
       component: () => import('../views/shop/Shop.vue'),
-      meta: { title: 'محصولات' }
+      meta: { title: 'محصولات' },
     },
     {
       path: '/shop/:id',
@@ -42,10 +42,16 @@ const router = createRouter({
       meta: { title: '. . .' }
     },
     {
-      path: '/shopping-cart',
+      path: '/shop/shopping-cart',
       name: 'ShoppingCart',
       component: () => import('../views/shop/ShoppingCart.vue'),
       meta: { title: 'سبد خرید' }
+    },
+    {
+      path: '/shop/checkout',
+      name: 'Checkout',
+      component: () => import('../views/shop/Checkout.vue'),
+      meta: { title: 'تسویه' }
     }
   ]
 })
