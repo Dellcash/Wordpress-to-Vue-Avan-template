@@ -22,10 +22,11 @@ const loginForm = reactive({
 </script>
 
 <template>
-  <main mb5>
-    <section class="p5 space-y-4 text-black/80">
+  <main>
+    <section>
+      <!-- step 1 -->
       <div>
-        <div class="flex items-center justify-between border-b border-black/50">
+        <div class="d48n4i">
           <h2 class="text-sm py2">قدم اول: اطلاعات شما</h2>
           <button @click="steps.first = true, steps.sec = false, steps.third = false, steps.fourth = false"
             v-if="!steps.first" class="text-xs">ویرایش</button>
@@ -33,7 +34,7 @@ const loginForm = reactive({
         <div v-show="steps.first" class="my6 flex items-start justify-between">
           <div wfull>
             <h4 text-sm>مشتری جدید هستید؟</h4>
-            <p class="text-xs my5 text-black/60">
+            <p class="text-xs my5 text-black/50">
               برای پرداخت سریعتر، رهگیری وضعیت سفارش و امکانات بیشتر عضو شوید.
               <br>
               شما بدون عضویت هم می‌توانید سفارش خود را تکمیل کنید.
@@ -45,7 +46,7 @@ const loginForm = reactive({
                 <label for="one" class="text-xs mr2">خرید بدون عضویت</label>
               </div>
 
-              <div class="inline-flex items-center">
+              <div class="flex items-center">
                 <input v-model="picked" type="radio" id="two" value="two" xl="w4 h4">
                 <label for="one" class="text-xs mr2">عضویت در سایت</label>
               </div>
@@ -57,11 +58,11 @@ const loginForm = reactive({
                   class="border border-gray-300 text-xs wfull p2 focus:border-2 focus:outline-none">
 
                 <button @click="steps.first = false, steps.sec = true"
-                  class="bg-#f26522 wfull text-center py2 text-xs text-white duration-250 hover:bg-#002c60">ادامه</button>
+                  class="bg-#f26522 wfull text-center py2 text-xs text-white duration-250 hover:bg-#002c60 md:w-40%">ادامه</button>
               </div>
 
               <button v-else @click="steps.first = false, steps.sec = true"
-                class="mt3 bg-#f26522 wfull text-center py2 text-xs text-white duration-250 hover:bg-#002c60">ادامه</button>
+                class="mt3 bg-#f26522 wfull text-center py2 text-xs text-white duration-250 hover:bg-#002c60 md:w-40%">ادامه</button>
             </form>
 
           </div>
@@ -70,7 +71,7 @@ const loginForm = reactive({
 
           <div wfull>
             <h4 text-sm>قبلا خرید کرده‌اید؟</h4>
-            <p class="text-xs my5 text-black/60">
+            <p class="text-xs my5 text-black/50">
               برای ادامه، لطفا شماره موبایل یا آدرس ایمیل و رمز عبور حساب خود را وارد کنید.
             </p>
 
@@ -84,10 +85,12 @@ const loginForm = reactive({
             </form>
 
             <button @click="steps.first = false, steps.sec = true"
-              class="bg-#f26522 wfull text-center py2 text-xs text-white duration-250 hover:bg-#002c60">ادامه</button>
+              class="bg-#f26522 wfull text-center py2 text-xs text-white duration-250 hover:bg-#002c60 md:w-40%">ادامه</button>
           </div>
         </div>
       </div>
+
+      <!-- step 2 -->
       <div>
         <div class="flex items-center justify-between border-b border-black/50">
           <h2 class="text-sm py2">قدم دوم: آدرس شما</h2>
@@ -99,8 +102,10 @@ const loginForm = reactive({
           <button @click="steps.sec = false, steps.third = true" class="bg-gray-600 text-white">ادامه</button>
         </div>
       </div>
+
+      <!-- step 3 -->
       <div>
-        <div class="flex items-center justify-between border-b border-black/50">
+        <div class="flex items-center justify-between border-b border-black/50 ">
           <h2 class="text-sm py2">قدم سوم: روش ارسال</h2>
           <button @click="steps.third = true, steps.sec = false, steps.first = false, steps.fourth = false"
             v-if="steps.fourth" class="text-xs">ویرایش</button>
@@ -110,6 +115,8 @@ const loginForm = reactive({
           <button @click="steps.third = false, steps.fourth = true" class="bg-gray-600 text-white">ادامه</button>
         </div>
       </div>
+
+      <!-- step 4 -->
       <div>
         <div class="flex items-center justify-between border-b border-black/50">
           <h2 class="text-sm py2">قدم چهارم: روش پرداخت</h2>
@@ -124,4 +131,39 @@ const loginForm = reactive({
 </template>
 
 <style lang="scss" scoped>
+main {
+  margin-bottom: 1.25rem;
+
+  section {
+    margin: auto;
+    max-width: 420px;
+    padding: 1.25rem;
+    color: rgba(0, 0, 0, 0.8);
+
+    >:not([hidden])~:not([hidden]) {
+      --un-space-y-reverse: 0;
+      margin-top: calc(1rem * calc(1 - var(--un-space-y-reverse)));
+      margin-bottom: calc(1rem * var(--un-space-y-reverse));
+    }
+
+    @screen md {
+      max-width: 768px;
+    }
+
+    @screen xl {
+      max-width: 1220px;
+    }
+
+    div {
+      &:first-child {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-color: rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+}
 </style>

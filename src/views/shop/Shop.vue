@@ -367,7 +367,7 @@ main {
               background-color: rgba(0, 56, 122, var(--un-bg-opacity));
             }
 
-            @media(min-width: 640px) {
+            @media(min-width: 768px) {
               letter-spacing: 1px;
             }
           }

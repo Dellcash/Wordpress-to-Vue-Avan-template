@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Unocss from 'unocss/vite'
 import { presetUno, presetAttributify, transformerCompileClass, presetIcons } from 'unocss'
+import transformerDirective from '@unocss/transformer-directives'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 
@@ -18,7 +19,8 @@ export default defineConfig({
         presetIcons()
       ],
       transformers: [
-        transformerCompileClass()
+        transformerCompileClass(),
+        transformerDirective()
       ]
     }),
     Components({
