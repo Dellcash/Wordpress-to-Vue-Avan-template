@@ -21,7 +21,7 @@ export default defineConfig({
       transformers: [
         transformerCompileClass(),
         transformerDirective()
-      ]
+      ],
     }),
     Components({
       extensions: ['vue', 'js']
