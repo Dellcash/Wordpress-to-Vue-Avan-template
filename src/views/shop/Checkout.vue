@@ -19,6 +19,8 @@ const loginForm = reactive({
   password: "",
   loginError: "",
 });
+
+const shipping = ref('three')
 </script>
 
 <template>
@@ -48,7 +50,7 @@ const loginForm = reactive({
 
               <div>
                 <input v-model="picked" type="radio" id="two" value="two" xl="w4 h4">
-                <label for="one">عضویت در سایت</label>
+                <label for="two">عضویت در سایت</label>
               </div>
 
               <div v-if="picked === 'two'">
@@ -78,7 +80,7 @@ const loginForm = reactive({
               </div>
             </form>
 
-            <button @click="steps.first = false, steps.sec = true">ادامه</button>
+            <button @click="steps.first = false, steps.sec = true" class="">ادامه</button>
           </div>
         </div>
       </div>
@@ -149,21 +151,43 @@ const loginForm = reactive({
               <input type="text" placeholder="کد پستی ×">
             </div>
 
-            <button>انتخاب روش ارسال</button>
+            <button @click="steps.sec = false, steps.third = true">انتخاب روش ارسال</button>
           </form>
         </div>
       </div>
 
       <!-- step 3 -->
       <div>
-        <div class="flex items-center justify-between border-b border-black/50 ">
-          <h2 class="text-sm py2">قدم سوم: روش ارسال</h2>
+        <div class="d48n4i">
+          <h2>قدم سوم: روش ارسال</h2>
           <button @click="steps.third = true, steps.sec = false, steps.first = false, steps.fourth = false"
-            v-if="steps.fourth" class="text-xs">ویرایش</button>
+            v-if="steps.fourth">ویرایش</button>
         </div>
-        <div v-show="steps.third" class="my6">
-          <h4>با پست</h4>
-          <button @click="steps.third = false, steps.fourth = true" class="bg-gray-600 text-white">ادامه</button>
+
+        <div v-show="steps.third" class="c4f0sf">
+          <h3>شیوه ارسال را انتخاب کنید</h3>
+          <form @submit.prevent="">
+            <div class="gw6dv1">
+              <div>
+                <input v-model="shipping" type="radio" id="three" value="three" xl="w4 h4">
+                <label for="three">پیک</label>
+              </div>
+
+              <h6 text-sm>پس کرایه</h6>
+            </div>
+
+            <div class="gw6dv1">
+              <div>
+                <input v-model="shipping" type="radio" id="four" value="four" xl="w4 h4">
+                <label for="four">پست</label>
+              </div>
+
+              <h6 text-sm>رایگان</h6>
+            </div>
+          </form>
+
+          <button @click="steps.third = false, steps.fourth = true">انتخاب روش
+            پرداخت</button>
         </div>
       </div>
 
@@ -259,8 +283,6 @@ main {
               }
 
               form {
-                margin-bottom: 1rem;
-
                 div {
                   &:first-child {
                     margin-bottom: 0.5rem;
@@ -339,7 +361,7 @@ main {
               }
 
               form {
-                margin-bottom: 0.75rem;
+                // margin-bottom: 0.75rem;
 
                 div {
                   margin-top: 0.75rem;
@@ -383,6 +405,7 @@ main {
               --un-text-opacity: 1;
               color: rgba(255, 255, 255, var(--un-text-opacity));
               transition-duration: 250ms;
+              margin-top: 1rem !important;
 
               &:hover {
                 --un-bg-opacity: 1;
@@ -499,6 +522,96 @@ main {
               @screen md {
                 width: 20%;
               }
+            }
+          }
+        }
+      }
+
+      &:nth-child(3) {
+        .d48n4i {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-bottom-width: 1px;
+          border-bottom-style: solid;
+          border-color: rgba(0, 0, 0, 0.5);
+
+          h2 {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+          }
+
+          button {
+            font-size: 0.75rem;
+            line-height: 1rem;
+            font-weight: 700;
+            transition-duration: 250ms;
+
+            &:hover {
+              opacity: 0.7;
+            }
+          }
+        }
+
+        .c4f0sf {
+          margin-top: 1.5rem;
+          margin-bottom: 1.5rem;
+
+          h3 {
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+          }
+
+          form {
+            margin-top: 1.5rem;
+
+            >:not([hidden])~:not([hidden]) {
+              --un-space-y-reverse: 0;
+              margin-top: calc(0.75rem * calc(1 - var(--un-space-y-reverse)));
+              margin-bottom: calc(0.75rem * var(--un-space-y-reverse));
+            }
+
+            .gw6dv1 {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+
+              div {
+                display: flex;
+                align-items: center;
+
+                label {
+                  margin-right: 0.75rem;
+                  font-size: 0.875rem;
+                  line-height: 1.25rem;
+                }
+              }
+            }
+          }
+
+          button {
+            width: 100%;
+            margin-top: 1.5rem !important;
+            --un-bg-opacity: 1;
+            background-color: rgba(242, 101, 34, var(--un-bg-opacity));
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            text-align: center;
+            font-size: 0.75rem;
+            line-height: 1rem;
+            --un-text-opacity: 1;
+            color: rgba(255, 255, 255, var(--un-text-opacity));
+            transition-duration: 250ms;
+
+            &:hover {
+              --un-bg-opacity: 1;
+              background-color: rgba(0, 44, 96, var(--un-bg-opacity));
+            }
+
+            @screen md {
+              width: 20%;
             }
           }
         }

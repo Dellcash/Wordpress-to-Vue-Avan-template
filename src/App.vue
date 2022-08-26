@@ -23,6 +23,14 @@ input[type=checkbox] {
   zoom: 1.2;
 }
 
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url(https://api.iconify.design/carbon:chevron-down.svg);
+  background-position: 2%;
+  background-repeat: no-repeat;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease;
