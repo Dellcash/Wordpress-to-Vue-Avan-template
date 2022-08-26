@@ -1,4 +1,10 @@
 <script setup>
+import { useShop } from '@/stores/shop';
+import { useMain } from '@/stores/main';
+
+const shop = useShop()
+const main = useMain()
+
 const steps = reactive({
   first: true,
   sec: false,
@@ -21,6 +27,8 @@ const loginForm = reactive({
 });
 
 const shipping = ref('three')
+
+const total = computed(() => main.toFarsiNumber(main.numberWithCommas(shop.totalAmount)))
 </script>
 
 <template>
@@ -193,12 +201,41 @@ const shipping = ref('three')
 
       <!-- step 4 -->
       <div>
-        <div class="flex items-center justify-between border-b border-black/50">
+        <div class="d48n4i">
           <h2 class="text-sm py2">قدم چهارم: روش پرداخت</h2>
         </div>
-        <div v-show="steps.fourth" class="my6">
-          <h4>کارت به کارت</h4>
-          <button class="bg-gray-600 text-white">ادامه</button>
+
+        <div v-show="steps.fourth" class="c4f0sf">
+          <h3>شیوه پرداخت را انتخاب نمایید.</h3>
+
+          <div class="y406mb">
+            <div class="o84hqw">
+              <div>
+                <input type="radio" id="cart" xl="w4 h4">
+                <label for="cart">کارت به کارت</label>
+              </div>
+
+              <div>
+                <div>
+                  <h5>جمع کل خرید شما</h5>
+                  <h5>{{ total }} تومان</h5>
+                </div>
+
+                <!-- I DONT KNOW WHAT HAPPENED IN THIS DIV :// -->
+                <div class="!-mt8px !wfull">
+                  <h5>هزینه ارسال</h5>
+                  <h5 class="!-m0">پس کرایه</h5>
+                </div>
+
+                <div>
+                  <h5>مبلغ قابل پرداخت</h5>
+                  <h5>{{ total }} تومان</h5>
+                </div>
+              </div>
+            </div>
+
+            <button>پرداخت و تکمیل</button>
+          </div>
         </div>
       </div>
     </section>
@@ -586,6 +623,118 @@ main {
                   margin-right: 0.75rem;
                   font-size: 0.875rem;
                   line-height: 1.25rem;
+                }
+              }
+            }
+          }
+
+          button {
+            width: 100%;
+            margin-top: 1.5rem !important;
+            --un-bg-opacity: 1;
+            background-color: rgba(242, 101, 34, var(--un-bg-opacity));
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            text-align: center;
+            font-size: 0.75rem;
+            line-height: 1rem;
+            --un-text-opacity: 1;
+            color: rgba(255, 255, 255, var(--un-text-opacity));
+            transition-duration: 250ms;
+
+            &:hover {
+              --un-bg-opacity: 1;
+              background-color: rgba(0, 44, 96, var(--un-bg-opacity));
+            }
+
+            @screen md {
+              width: 20%;
+            }
+          }
+        }
+      }
+
+      &:nth-child(4) {
+        .d48n4i {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-bottom-width: 1px;
+          border-bottom-style: solid;
+          border-color: rgba(0, 0, 0, 0.5);
+
+          h2 {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+          }
+        }
+
+        .c4f0sf {
+          margin-top: 1.5rem;
+          margin-bottom: 1.5rem;
+
+          h3 {
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+          }
+
+          .y406mb {
+            margin-top: 1.25rem;
+
+            .o84hqw {
+              @screen md {
+                display: flex;
+                align-items: flex-start;
+
+                >:not([hidden])~:not([hidden]) {
+                  --un-space-x-reverse: 0;
+                  margin-left: calc(7.5rem * calc(1 - var(--un-space-x-reverse)));
+                  margin-right: calc(7.5rem * var(--un-space-x-reverse));
+                  --un-space-x-reverse: 1;
+                }
+              }
+
+              div {
+                &:first-child {
+                  margin-bottom: 1.25rem;
+                  display: flex;
+                  align-items: center;
+
+                  >:not([hidden])~:not([hidden]) {
+                    --un-space-x-reverse: 0;
+                    margin-left: calc(0.75rem * calc(1 - var(--un-space-x-reverse)));
+                    margin-right: calc(0.75rem * var(--un-space-x-reverse));
+                    --un-space-x-reverse: 1;
+                  }
+
+                  label {
+                    font-size: 0.875rem;
+                    line-height: 1.25rem;
+                  }
+                }
+
+                &:nth-child(2) {
+                  width: 70%;
+
+                  >:not([hidden])~:not([hidden]) {
+                    --un-space-y-reverse: 0;
+                    margin-top: calc(0.75rem * calc(1 - var(--un-space-y-reverse)));
+                    margin-bottom: calc(0.75rem * var(--un-space-y-reverse));
+                  }
+
+                  @screen md {
+                    width: 40%;
+                  }
+
+                  div {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    font-size: 0.875rem;
+                    line-height: 1.25rem;
+                  }
                 }
               }
             }
