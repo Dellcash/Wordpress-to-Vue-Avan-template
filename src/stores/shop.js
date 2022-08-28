@@ -68,6 +68,7 @@ export const useShop = defineStore({
       },
     ],
     cart: useStorage('cart', []),
+    users: useStorage('users', []),
     sideCart: false,
     addLoading: false,
     removeLoading: false

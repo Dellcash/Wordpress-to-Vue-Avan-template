@@ -19,6 +19,40 @@ const signInForm = reactive({
   password: '',
   signInErr: ''
 })
+const signInLoading = ref(false)
+const signIn = () => {
+  const user = shop.users.find((user) => user.email === signInForm.email)
+  if (!user) {
+    if (signInForm.email === '' || signInForm.password === '') {
+      signInForm.signInErr = "لطفا اطلاعات را کامل وارد کنید!";
+      setTimeout(() => {
+        signInForm.signInErr = ''
+      }, 2000);
+    } else {
+      signInLoading.value = true
+      setTimeout(() => {
+        signInLoading.value = false
+
+        shop.users.push({
+          id: new Date().getTime(),
+          email: signInForm.email,
+          password: signInForm.password
+        })
+
+        signInForm.email = ''
+        signInForm.password = ''
+        steps.first = false
+        steps.sec = true
+      }, 2000)
+    }
+  } else {
+    signInForm.signInErr = 'ایمیل دیگری انتخاب کنید!'
+
+    setTimeout(() => {
+      signInForm.signInErr = ''
+    }, 2000);
+  }
+}
 
 const loginForm = reactive({
   email: "",
@@ -50,7 +84,7 @@ const total = computed(() => main.toFarsiNumber(main.numberWithCommas(shop.total
               شما بدون عضویت هم می‌توانید سفارش خود را تکمیل کنید.
             </p>
 
-            <form @submit.prevent="">
+            <form @submit.prevent="signIn">
               <div>
                 <input v-model="picked" type="radio" id="one" value="one" xl="w4 h4">
                 <label for="one">خرید بدون عضویت</label>
@@ -64,8 +98,11 @@ const total = computed(() => main.toFarsiNumber(main.numberWithCommas(shop.total
               <div v-if="picked === 'two'">
                 <input v-model="signInForm.email" type="email" placeholder="پست الکترونیکی">
                 <input v-model="signInForm.password" type="password" placeholder="کلمه عبور">
+                <p v-if="signInForm.signInErr">{{
+                    signInForm.signInErr
+                }}</p>
 
-                <button @click="steps.first = false, steps.sec = true">ادامه</button>
+                <button>ادامه</button>
               </div>
 
               <button v-else @click="steps.first = false, steps.sec = true" mt4>ادامه</button>
@@ -346,6 +383,7 @@ main {
                   }
 
                   &:nth-child(3) {
+                    position: relative;
                     margin-top: 1.25rem;
 
                     >:not([hidden])~:not([hidden]) {
@@ -369,6 +407,24 @@ main {
                         border-style: solid;
                         outline: 2px solid transparent;
                         outline-offset: 2px;
+                      }
+                    }
+
+                    p {
+                      position: absolute;
+                      width: 100%;
+                      top: -0.7rem;
+                      --un-bg-opacity: 1;
+                      background-color: rgba(248, 113, 113, var(--un-bg-opacity));
+                      padding: 0.5rem;
+                      font-size: 0.75rem;
+                      line-height: 1rem;
+                      letter-spacing: -0.5px;
+                      --un-text-opacity: 1;
+                      color: rgba(255, 255, 255, var(--un-text-opacity));
+
+                      @screen sm {
+                        letter-spacing: 0rem;
                       }
                     }
                   }
