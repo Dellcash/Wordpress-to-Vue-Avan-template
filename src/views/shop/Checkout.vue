@@ -14,12 +14,20 @@ const steps = reactive({
 
 const picked = ref('one')
 
+const signInLoading = ref(false)
 const signInForm = reactive({
   email: '',
   password: '',
-  signInErr: ''
+  signInErr: '',
+  next: () => {
+    signInLoading.value = true
+    setTimeout(() => {
+      signInLoading.value = false
+      steps.first = false
+      steps.sec = true
+    }, 2000);
+  }
 })
-const signInLoading = ref(false)
 const signIn = () => {
   const user = shop.users.find((user) => user.email === signInForm.email)
   if (!user) {
@@ -54,15 +62,94 @@ const signIn = () => {
   }
 }
 
+const loginLoading = ref(false)
 const loginForm = reactive({
   email: "",
   password: "",
   loginError: "",
 });
+const login = () => {
+  const user = shop.users.find(
+    (user) => user.email == loginForm.email
+  );
+  if (user) {
+    loginLoading.value = true
+    setTimeout(() => {
+      loginLoading.value = false
+      loginForm.email = ''
+      loginForm.password = ''
+      steps.first = false
+      steps.sec = true
+    }, 2000);
+  } else {
+    if (loginForm.email === '' || loginForm.password === '') {
+      loginForm.loginError = 'لطفا اطلاعات را کامل وارد کنید!'
+      setTimeout(() => {
+        loginForm.loginError = ''
+      }, 2000);
+    } else {
+      loginForm.loginError = 'کاربری با این مشخصات وجود ندارد!'
+      setTimeout(() => {
+        loginForm.loginError = ''
+      }, 2000);
+    }
+  }
+}
+
+const info = reactive({
+  firstName: '',
+  firstErr: '',
+  lastName: '',
+  lastErr: '',
+  address: '',
+  addErr: '',
+  zipCode: '',
+  zipErr: ''
+})
+
+const validateInfo = () => {
+  if (info.firstName === '') {
+    info.firstErr = 'نام خود را وارد کنید!'
+    setTimeout(() => {
+      info.firstErr = ''
+    }, 2000);
+  }
+  if (info.lastName === '') {
+    info.lastErr = 'نام خانوادگی خود را وارد کنید!'
+    setTimeout(() => {
+      info.lastErr = ''
+    }, 2000);
+  }
+  if (info.address === '') {
+    info.addErr = 'آدرس را وارد کنید!'
+    setTimeout(() => {
+      info.addErr = ''
+    }, 2000);
+  }
+  if (info.zipCode === '') {
+    info.zipErr = 'کدپستی را وارد کنید!'
+    setTimeout(() => {
+      info.zipErr = ''
+    }, 2000);
+  }
+
+  if (info.firstName !== '' && info.lastName !== '' && info.address !== '' && info.zipCode !== '') {
+    console.log('info added!');
+    // steps.sec = false
+    // steps.third = true
+  }
+}
 
 const shipping = ref('three')
-
 const total = computed(() => main.toFarsiNumber(main.numberWithCommas(shop.totalAmount)))
+
+onMounted(() => {
+  if (shop.isLoggedIn) {
+    steps.first = false
+    steps.sec = false
+    steps.third = true
+  }
+})
 </script>
 
 <template>
@@ -75,6 +162,7 @@ const total = computed(() => main.toFarsiNumber(main.numberWithCommas(shop.total
           <button @click="steps.first = true, steps.sec = false, steps.third = false, steps.fourth = false"
             v-if="!steps.first">ویرایش</button>
         </div>
+
         <div v-show="steps.first" class="tzb3ri">
           <div>
             <h4>مشتری جدید هستید؟</h4>
@@ -99,13 +187,19 @@ const total = computed(() => main.toFarsiNumber(main.numberWithCommas(shop.total
                 <input v-model="signInForm.email" type="email" placeholder="پست الکترونیکی">
                 <input v-model="signInForm.password" type="password" placeholder="کلمه عبور">
                 <p v-if="signInForm.signInErr">{{
-                    signInForm.signInErr
-                }}</p>
+                   signInForm.signInErr 
+                  }}</p>
 
-                <button>ادامه</button>
+                <button>
+                  <span v-if="!signInLoading" text-xs>ادامه</span>
+                  <span v-else>. . .</span>
+                </button>
               </div>
 
-              <button v-else @click="steps.first = false, steps.sec = true" mt4>ادامه</button>
+              <button v-else @click="signInForm.next" mt4>
+                <span v-if="!signInLoading" text-xs>ادامه</span>
+                <span v-else>. . .</span>
+              </button>
             </form>
 
           </div>
@@ -118,14 +212,19 @@ const total = computed(() => main.toFarsiNumber(main.numberWithCommas(shop.total
               برای ادامه، لطفا شماره موبایل یا آدرس ایمیل و رمز عبور حساب خود را وارد کنید.
             </p>
 
-            <form @submit.prevent="">
+            <form @submit.prevent="login">
               <div>
                 <input v-model="loginForm.email" type="email" placeholder="پست الکترونیکی">
                 <input v-model="loginForm.password" type="password" placeholder="کلمه عبور">
               </div>
-            </form>
 
-            <button @click="steps.first = false, steps.sec = true" class="">ادامه</button>
+              <p v-if="loginForm.loginError">{{  loginForm.loginError  }}</p>
+
+              <button>
+                <span v-if="!loginLoading" text-xs>ادامه</span>
+                <span v-else>. . .</span>
+              </button>
+            </form>
           </div>
         </div>
       </div>
@@ -139,15 +238,15 @@ const total = computed(() => main.toFarsiNumber(main.numberWithCommas(shop.total
         </div>
 
         <div v-show="steps.sec" class="c4f0sf">
-          <form @submit.prevent="">
+          <form @submit.prevent="validateInfo">
             <div>
-              <input type="text" placeholder="نام *">
-              <p></p>
+              <input v-model="info.firstName" type="text" placeholder="نام *">
+              <p v-if="info.firstErr">{{  info.firstErr  }}</p>
             </div>
 
             <div>
-              <input type="text" placeholder="نام خانوادگی *">
-              <p></p>
+              <input v-model="info.lastName" type="text" placeholder="نام خانوادگی *">
+              <p v-if="info.lastErr">{{  info.lastErr  }}</p>
             </div>
 
             <div>
@@ -178,25 +277,24 @@ const total = computed(() => main.toFarsiNumber(main.numberWithCommas(shop.total
             </div>
 
             <div>
-              <textarea rows="7" placeholder="آدرس *"></textarea>
-              <p></p>
+              <textarea v-model="info.address" rows="7" placeholder="آدرس *"></textarea>
+              <p v-if="info.addErr">{{  info.addErr  }}</p>
             </div>
 
             <div>
               <input type="text" placeholder="شماره همراه">
-              <p></p>
             </div>
 
             <div>
               <input type="text" placeholder="شماره ثابت">
-              <p></p>
             </div>
 
             <div>
-              <input type="text" placeholder="کد پستی ×">
+              <input v-model="info.zipCode" type="text" placeholder="کد پستی *">
+              <p v-if="info.zipErr">{{  info.zipErr  }}</p>
             </div>
 
-            <button @click="steps.sec = false, steps.third = true">انتخاب روش ارسال</button>
+            <button>انتخاب روش ارسال</button>
           </form>
         </div>
       </div>
@@ -255,7 +353,7 @@ const total = computed(() => main.toFarsiNumber(main.numberWithCommas(shop.total
               <div>
                 <div>
                   <h5>جمع کل خرید شما</h5>
-                  <h5>{{ total }} تومان</h5>
+                  <h5>{{  total  }} تومان</h5>
                 </div>
 
                 <!-- I DONT KNOW WHAT HAPPENED IN THIS DIV :// -->
@@ -266,7 +364,7 @@ const total = computed(() => main.toFarsiNumber(main.numberWithCommas(shop.total
 
                 <div>
                   <h5>مبلغ قابل پرداخت</h5>
-                  <h5>{{ total }} تومان</h5>
+                  <h5>{{  total  }} تومان</h5>
                 </div>
               </div>
             </div>
@@ -276,6 +374,11 @@ const total = computed(() => main.toFarsiNumber(main.numberWithCommas(shop.total
         </div>
       </div>
     </section>
+
+    <!-- <div>
+      <div v-for="(index, i) in 5" :key="i"
+        class="[&:nth-child(3)]:bg-red [&:nth-child(2)]:bg-blue sm:hover:[&:nth-child(4)]:text-3xl">{{ index }}</div>
+    </div> -->
   </main>
 </template>
 
@@ -454,7 +557,7 @@ main {
               }
 
               form {
-                // margin-bottom: 0.75rem;
+                position: relative;
 
                 div {
                   margin-top: 0.75rem;
@@ -482,6 +585,22 @@ main {
                       outline-offset: 2px;
                     }
                   }
+                }
+
+                p {
+                  position: absolute;
+                  top: -0.925rem;
+                  margin: 0rem !important;
+                  margin-top: 1rem !important;
+                  width: 100%;
+                  --un-bg-opacity: 1;
+                  background-color: rgba(248, 113, 113, var(--un-bg-opacity));
+                  padding: 0.5rem;
+                  font-size: 0.75rem;
+                  line-height: 1rem;
+                  letter-spacing: -0.5px;
+                  --un-text-opacity: 1 !important;
+                  color: rgba(255, 255, 255, var(--un-text-opacity)) !important;
                 }
               }
             }
@@ -546,6 +665,8 @@ main {
           margin-bottom: 1.5rem;
 
           form {
+            position: relative;
+
             >:not([hidden])~:not([hidden]) {
               --un-space-y-reverse: 0;
               margin-top: calc(0.75rem * calc(1 - var(--un-space-y-reverse)));
@@ -574,6 +695,8 @@ main {
             }
 
             div {
+              position: relative;
+
               &:nth-child(4) {
                 display: grid;
                 grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -587,10 +710,16 @@ main {
             }
 
             p {
+              position: absolute;
+              top: 1px;
+              width: 100%;
+              --un-bg-opacity: 1;
+              background-color: rgba(248, 113, 113, var(--un-bg-opacity));
+              padding: 0.5rem;
               font-size: 0.75rem;
               line-height: 1rem;
               --un-text-opacity: 1;
-              color: rgba(248, 113, 113, var(--un-text-opacity));
+              color: rgba(255, 255, 255, var(--un-text-opacity));
             }
 
             button {

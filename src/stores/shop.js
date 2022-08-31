@@ -89,6 +89,13 @@ export const useShop = defineStore({
       return state.cart.reduce((total, product) => {
         return total + product.price * product.quantity
       }, 0)
+    },
+    isLoggedIn(state) {
+      if (state.users.length > 0) {
+        return true
+      } else {
+        return false
+      }
     }
   },
   actions: {
