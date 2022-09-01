@@ -96,6 +96,7 @@ const login = () => {
   }
 }
 
+const infoLoading = ref(false)
 const info = reactive({
   firstName: '',
   firstErr: '',
@@ -106,7 +107,6 @@ const info = reactive({
   zipCode: '',
   zipErr: ''
 })
-
 const validateInfo = () => {
   if (info.firstName === '') {
     info.firstErr = 'نام خود را وارد کنید!'
@@ -134,9 +134,30 @@ const validateInfo = () => {
   }
 
   if (info.firstName !== '' && info.lastName !== '' && info.address !== '' && info.zipCode !== '') {
-    console.log('info added!');
-    // steps.sec = false
-    // steps.third = true
+    infoLoading.value = true
+
+    setTimeout(() => {
+      infoLoading.value = false
+
+      if (shop.users.length > 0) {
+        const userInfo = shop.users[0]
+        Object.assign(userInfo, {
+          firstname: info.firstName,
+          lastname: info.lastName,
+          address: info.address,
+          zipCode: info.zipCode
+        })
+      } else {
+        shop.users.push({
+          firstname: info.firstName,
+          lastname: info.lastName,
+          address: info.address,
+          zipCode: info.zipCode
+        })
+      }
+      steps.sec = false
+      steps.third = true
+    }, 2000);
   }
 }
 
@@ -150,6 +171,15 @@ onMounted(() => {
     steps.third = true
   }
 })
+
+// function combineObj(...arr) {
+//   return arr.reduce((acc, val) => {
+//     return { ...acc, ...val }
+//   }, {})
+// }
+
+// const combine = combineObj(shop.users[0], shop.users[1])
+// console.log(combine);
 </script>
 
 <template>
@@ -187,8 +217,8 @@ onMounted(() => {
                 <input v-model="signInForm.email" type="email" placeholder="پست الکترونیکی">
                 <input v-model="signInForm.password" type="password" placeholder="کلمه عبور">
                 <p v-if="signInForm.signInErr">{{
-                   signInForm.signInErr 
-                  }}</p>
+                    signInForm.signInErr
+                }}</p>
 
                 <button>
                   <span v-if="!signInLoading" text-xs>ادامه</span>
@@ -218,7 +248,7 @@ onMounted(() => {
                 <input v-model="loginForm.password" type="password" placeholder="کلمه عبور">
               </div>
 
-              <p v-if="loginForm.loginError">{{  loginForm.loginError  }}</p>
+              <p v-if="loginForm.loginError">{{ loginForm.loginError }}</p>
 
               <button>
                 <span v-if="!loginLoading" text-xs>ادامه</span>
@@ -241,12 +271,12 @@ onMounted(() => {
           <form @submit.prevent="validateInfo">
             <div>
               <input v-model="info.firstName" type="text" placeholder="نام *">
-              <p v-if="info.firstErr">{{  info.firstErr  }}</p>
+              <p v-if="info.firstErr">{{ info.firstErr }}</p>
             </div>
 
             <div>
               <input v-model="info.lastName" type="text" placeholder="نام خانوادگی *">
-              <p v-if="info.lastErr">{{  info.lastErr  }}</p>
+              <p v-if="info.lastErr">{{ info.lastErr }}</p>
             </div>
 
             <div>
@@ -278,7 +308,7 @@ onMounted(() => {
 
             <div>
               <textarea v-model="info.address" rows="7" placeholder="آدرس *"></textarea>
-              <p v-if="info.addErr">{{  info.addErr  }}</p>
+              <p v-if="info.addErr">{{ info.addErr }}</p>
             </div>
 
             <div>
@@ -291,10 +321,13 @@ onMounted(() => {
 
             <div>
               <input v-model="info.zipCode" type="text" placeholder="کد پستی *">
-              <p v-if="info.zipErr">{{  info.zipErr  }}</p>
+              <p v-if="info.zipErr">{{ info.zipErr }}</p>
             </div>
 
-            <button>انتخاب روش ارسال</button>
+            <button>
+              <span v-if="!infoLoading" text-xs>انتخاب روش ارسال</span>
+              <span v-else>. . .</span>
+            </button>
           </form>
         </div>
       </div>
@@ -353,7 +386,7 @@ onMounted(() => {
               <div>
                 <div>
                   <h5>جمع کل خرید شما</h5>
-                  <h5>{{  total  }} تومان</h5>
+                  <h5>{{ total }} تومان</h5>
                 </div>
 
                 <!-- I DONT KNOW WHAT HAPPENED IN THIS DIV :// -->
@@ -364,7 +397,7 @@ onMounted(() => {
 
                 <div>
                   <h5>مبلغ قابل پرداخت</h5>
-                  <h5>{{  total  }} تومان</h5>
+                  <h5>{{ total }} تومان</h5>
                 </div>
               </div>
             </div>
@@ -598,9 +631,13 @@ main {
                   padding: 0.5rem;
                   font-size: 0.75rem;
                   line-height: 1rem;
-                  letter-spacing: -0.5px;
+                  letter-spacing: -1px;
                   --un-text-opacity: 1 !important;
                   color: rgba(255, 255, 255, var(--un-text-opacity)) !important;
+
+                  @screen md {
+                    letter-spacing: 0
+                  }
                 }
               }
             }
