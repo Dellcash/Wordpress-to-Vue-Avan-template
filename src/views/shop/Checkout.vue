@@ -184,13 +184,28 @@ const addShipping = () => {
     steps.fourth = true
   }, 2000);
 }
+
 const loadingcompleted = ref(false)
+const cart = ref('cart')
+const cartErr = ref('')
 const completed = () => {
-  loadingcompleted.value = true
-  setTimeout(() => {
-    loadingcompleted.value = false
-    router.push('/shop/success')
-  }, 2000);
+  if (shop.cart.length > 0) {
+    loadingcompleted.value = true
+    setTimeout(() => {
+      loadingcompleted.value = false
+      shop.cart.splice(0, shop.cart.length)
+      router.push('/shop/success')
+    }, 2000);
+  } else {
+    loadingcompleted.value = true
+    setTimeout(() => {
+      loadingcompleted.value = false
+      cartErr.value = 'سبد خرید شما خالی است!'
+      setTimeout(() => {
+        cartErr.value = ''
+      }, 2000);
+    }, 2000);
+  }
 }
 const total = computed(() => main.toFarsiNumber(main.numberWithCommas(shop.totalAmount)))
 
@@ -398,11 +413,14 @@ onMounted(() => {
 
         <div v-show="steps.fourth" class="c4f0sf">
           <h3>شیوه پرداخت را انتخاب نمایید.</h3>
+          <XyzTransition appear xyz="fade right">
+            <p v-if="cartErr">{{ cartErr }}</p>
+          </XyzTransition>
 
           <div class="y406mb">
             <div class="o84hqw">
               <div>
-                <input type="radio" id="cart" xl="w4 h4">
+                <input v-model="cart" type="radio" id="cart" value="cart" xl="w4 h4">
                 <label for="cart">کارت به کارت</label>
               </div>
 
@@ -926,6 +944,14 @@ main {
           h3 {
             font-size: 0.875rem;
             line-height: 1.25rem;
+          }
+
+          p {
+            margin-top: 0.25rem;
+            font-size: 0.75rem;
+            line-height: 1rem;
+            --un-text-opacity: 1;
+            color: rgba(248, 113, 113, var(--un-text-opacity));
           }
 
           .y406mb {

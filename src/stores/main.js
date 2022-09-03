@@ -63,11 +63,11 @@ export const useMain = defineStore({
         },
         {
           title: 'وبلاگ',
-          link: '#'
+          link: '/blogs'
         },
         {
           title: 'تماس',
-          link: '#'
+          link: '/contact'
         }
       ]
     },

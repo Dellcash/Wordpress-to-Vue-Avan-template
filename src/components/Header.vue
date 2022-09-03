@@ -96,7 +96,7 @@ onMounted(() => {
 
           <div space-x-5>
             <button v-for="link in main.links.part2" :key="link" first:mx5>
-              <RouterLink :to="link.link" class="ndjxbp">
+              <RouterLink :to="link.link" class="ndjxbp" exact-active-class="!text-red-400">
                 {{
                     link.title
                 }}
