@@ -1,9 +1,11 @@
 <script setup>
 import { useShop } from '@/stores/shop';
 import { useMain } from '@/stores/main';
+import { useRouter } from 'vue-router';
 
 const shop = useShop()
 const main = useMain()
+const router = useRouter()
 
 const steps = reactive({
   first: true,
@@ -161,7 +163,35 @@ const validateInfo = () => {
   }
 }
 
+const loadingShipping = ref(false)
 const shipping = ref('three')
+const addShipping = () => {
+  loadingShipping.value = true
+  setTimeout(() => {
+    loadingShipping.value = false
+    if (shop.users.length > 0) {
+      const user = shop.users[0]
+      Object.assign(user, {
+        shipping: shipping
+      })
+    } else {
+      shop.users.push({
+        shipping: shipping
+      })
+    }
+
+    steps.third = false
+    steps.fourth = true
+  }, 2000);
+}
+const loadingcompleted = ref(false)
+const completed = () => {
+  loadingcompleted.value = true
+  setTimeout(() => {
+    loadingcompleted.value = false
+    router.push('/shop/success')
+  }, 2000);
+}
 const total = computed(() => main.toFarsiNumber(main.numberWithCommas(shop.totalAmount)))
 
 onMounted(() => {
@@ -171,15 +201,6 @@ onMounted(() => {
     steps.third = true
   }
 })
-
-// function combineObj(...arr) {
-//   return arr.reduce((acc, val) => {
-//     return { ...acc, ...val }
-//   }, {})
-// }
-
-// const combine = combineObj(shop.users[0], shop.users[1])
-// console.log(combine);
 </script>
 
 <template>
@@ -342,7 +363,7 @@ onMounted(() => {
 
         <div v-show="steps.third" class="c4f0sf">
           <h3>شیوه ارسال را انتخاب کنید</h3>
-          <form @submit.prevent="">
+          <form @submit.prevent="addShipping">
             <div class="gw6dv1">
               <div>
                 <input v-model="shipping" type="radio" id="three" value="three" xl="w4 h4">
@@ -360,10 +381,12 @@ onMounted(() => {
 
               <h6 text-sm>رایگان</h6>
             </div>
-          </form>
 
-          <button @click="steps.third = false, steps.fourth = true">انتخاب روش
-            پرداخت</button>
+            <button>
+              <span v-if="!loadingShipping" text-xs>انتخاب روش پرداخت</span>
+              <span v-else text-xs>. . .</span>
+            </button>
+          </form>
         </div>
       </div>
 
@@ -402,7 +425,10 @@ onMounted(() => {
               </div>
             </div>
 
-            <button>پرداخت و تکمیل</button>
+            <button @click="completed">
+              <span v-if="!loadingcompleted" text-xs>پرداخت و تکمیل</span>
+              <span v-else>. . .</span>
+            </button>
           </div>
         </div>
       </div>
