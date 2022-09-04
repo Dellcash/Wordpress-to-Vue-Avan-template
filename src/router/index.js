@@ -58,6 +58,12 @@ const router = createRouter({
       name: 'Success',
       component: () => import('../views/shop/Success.vue'),
       meta: { title: 'تکمیل' }
+    },
+    {
+      path: '/blogs',
+      name: 'Blogs',
+      component: () => import('../views/blog/Blogs.vue'),
+      meta: { title: 'بلاگ‌ها' }
     }
   ]
 })

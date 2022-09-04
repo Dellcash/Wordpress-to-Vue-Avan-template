@@ -1,10 +1,12 @@
 <script setup>
 import { useMain } from '../stores/main';
+import { useBlog } from '../stores/blog';
 import { useForm } from '../stores/form';
 import { Carousel, Slide } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
 
 const main = useMain()
+const blog = useBlog()
 const form = useForm()
 
 const services = ref({
@@ -32,17 +34,17 @@ const teams = main.teams
 
 const blogPosts = ref([
   {
-    img: main.blogs.blog1,
+    img: blog.imgs.blog1,
     title: 'چرا برای آموزش مالی هزینه کنیم',
     date: '۱۰ دی ۹۸'
   },
   {
-    img: main.blogs.blog2,
+    img: blog.imgs.blog2,
     title: 'طرح هایی برای رشد کسب و کار شما',
     date: '۱۰ دی ۹۸'
   },
   {
-    img: main.blogs.blog3,
+    img: blog.imgs.blog3,
     title: 'یک مشاور خوب چه ویژگی هایی دارد ؟',
     date: '۱۲ آذر ۹۷'
   }
