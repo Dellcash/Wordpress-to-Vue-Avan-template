@@ -22,6 +22,13 @@ export default defineConfig({
         transformerCompileClass(),
         transformerDirective()
       ],
+      theme: {
+        container: {
+          maxwidth: {
+            sm: '420px'
+          }
+        }
+      }
     }),
     Components({
       extensions: ['vue', 'js']
