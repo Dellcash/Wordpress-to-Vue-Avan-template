@@ -10,6 +10,7 @@ export const useBlog = defineStore({
   state: () => ({
     date: new Date().toLocaleDateString('fa-IR'),
     description: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.',
+    imgs: [blog1, blog2, blog3],
     blogs: [
       {
         id: '1',
@@ -17,7 +18,6 @@ export const useBlog = defineStore({
         date: '۱۴۰۱/۶/۱۳',
         folder: 'صدمه شخصی',
         tags: ['آژانس‌ها', 'آگهی', 'تجارت', 'مالی'],
-        description: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.',
         img: blog1,
       },
       {
@@ -26,7 +26,6 @@ export const useBlog = defineStore({
         date: '۱۴۰۱/۶/۱۳',
         folder: 'مالی',
         tags: ['آژانس‌ها', 'آگهی', 'مالی'],
-        description: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.',
         img: blog2,
       },
       {
@@ -35,7 +34,6 @@ export const useBlog = defineStore({
         date: '۱۴۰۱/۶/۱۳',
         folder: 'تجارت',
         tags: ['آگهی', 'تجارت', 'مالی'],
-        description: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.',
         img: blog3,
       },
       {
@@ -44,18 +42,23 @@ export const useBlog = defineStore({
         date: '۱۴۰۱/۶/۱۳',
         folder: 'آگهی',
         tags: ['آگهی', 'مالی'],
-        description: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.',
         img: blog2,
       },
       {
-        id: '4',
+        id: '5',
         title: 'مشاوره مالی برای یک استارت آپ خوب',
         date: '۱۴۰۱/۶/۱۳',
         folder: 'آگهی',
         tags: ['آگهی', 'مشاوره'],
-        description: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.',
-        img: blog2,
+        img: blog4,
       }
     ]
   }),
+  getters: {
+    getBlog: (state) => {
+      return (id) => {
+        return state.blogs.filter(blog => blog.id == id)[0]
+      }
+    }
+  }
 })

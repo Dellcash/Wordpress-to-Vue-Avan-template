@@ -22,12 +22,8 @@ export default defineConfig({
         transformerCompileClass(),
         transformerDirective()
       ],
-      theme: {
-        container: {
-          maxwidth: {
-            sm: '420px'
-          }
-        }
+      shortcuts: {
+        'layout': 'max-w-420px mx-auto md:max-w-768px xl:max-w-1170px',
       }
     }),
     Components({

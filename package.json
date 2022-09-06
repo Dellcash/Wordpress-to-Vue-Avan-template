@@ -23,7 +23,7 @@
     "@unocss/transformer-directives": "^0.45.12",
     "@vitejs/plugin-vue": "^2.3.3",
     "sass": "^1.54.0",
-    "unocss": "^0.44.0",
+    "unocss": "^0.45.15",
     "unplugin-auto-import": "^0.9.2",
     "unplugin-vue-components": "^0.21.1",
     "vite": "^2.9.12"
