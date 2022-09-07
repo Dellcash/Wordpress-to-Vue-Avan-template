@@ -31,24 +31,6 @@ const services = ref({
   part2: ['ممیزی و تضمین', 'معاملات و سهام', 'مشاوره مالی', 'برنامه ریزی استراتژیک', 'اوراق قرضه و کالاها', 'پیش بینی های مالی']
 })
 const teams = main.teams
-
-const blogPosts = ref([
-  {
-    img: blog.imgs.blog1,
-    title: 'چرا برای آموزش مالی هزینه کنیم',
-    date: '۱۰ دی ۹۸'
-  },
-  {
-    img: blog.imgs.blog2,
-    title: 'طرح هایی برای رشد کسب و کار شما',
-    date: '۱۰ دی ۹۸'
-  },
-  {
-    img: blog.imgs.blog3,
-    title: 'یک مشاور خوب چه ویژگی هایی دارد ؟',
-    date: '۱۲ آذر ۹۷'
-  }
-])
 </script>
 
 <template>
@@ -205,10 +187,14 @@ const blogPosts = ref([
         </div>
 
         <div class="o16yyo">
-          <div v-for="posts in blogPosts" :key="posts" class="p3xo7a">
-            <img :src="posts.img" alt="blog image" class="wuvabq">
+          <div v-for="posts in blog.blogs.slice(1, 4)" :key="posts" class="p3xo7a">
+            <router-link :to="`/blogs/${posts.id}`">
+              <img :src="posts.img" alt="blog image" class="wuvabq">
+            </router-link>
             <div>
-              <h5 class="gglewz">{{ posts.title }}</h5>
+              <router-link :to="`/blogs/${posts.id}`">
+                <h5 class="gglewz">{{ posts.title }}</h5>
+              </router-link>
               <h6 text="xs gray">{{ posts.date }}</h6>
             </div>
           </div>

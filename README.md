@@ -1,6 +1,6 @@
 <div id="top"></div>
 <!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
+*** Thanks for checking out the README-Template. If you have a suggestion
 *** Don't forget to give the project a star!
 -->
 
@@ -17,9 +17,9 @@
     <a href="https://uno.antfu.me/">ٔUnocss</a>
     درحال کدنویسی مجددش هستم به ویوو‌جی‌اس.
     <br />
-    <a href="#">دمو پروژه من</a>
+    <a href="https://wordpress-to-vue-3.netlify.app/">دمو پروژه من</a>
     ·
-    <a href="#">قالب آوان</a>
+    <a href="https://theme49.mywebzi.ir/">قالب آوان</a>
   </p>
   </p>
   

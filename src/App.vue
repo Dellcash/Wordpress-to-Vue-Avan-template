@@ -1,5 +1,5 @@
 <template>
-  <Header />
+  <Header v-cloak />
   <router-view v-slot="{ Component }">
     <transition mode="out-in" name="fade">
       <component :is="Component" />
@@ -9,6 +9,10 @@
 </template>
 
 <style>
+[v-cloak] {
+  display: none;
+}
+
 @font-face {
   font-family: "IRANSans";
   src: url("./fonts/FontsFree-Net-ir_sans.ttf");

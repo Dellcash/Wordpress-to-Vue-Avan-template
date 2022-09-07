@@ -10,7 +10,6 @@ export const useBlog = defineStore({
   state: () => ({
     date: new Date().toLocaleDateString('fa-IR'),
     description: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.',
-    imgs: [blog1, blog2, blog3],
     blogs: [
       {
         id: '1',
