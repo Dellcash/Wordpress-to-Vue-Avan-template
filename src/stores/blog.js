@@ -14,7 +14,7 @@ export const useBlog = defineStore({
       {
         id: '1',
         title: 'چرا برای آموزش مالی هزینه کنیم',
-        date: '۱۴۰۱/۶/۱۳',
+        date: '۱۳ بهمن ۱۴۰۱',
         folder: 'صدمه شخصی',
         tags: ['آژانس‌ها', 'آگهی', 'تجارت', 'مالی'],
         img: blog1,
@@ -22,7 +22,7 @@ export const useBlog = defineStore({
       {
         id: '2',
         title: 'طرح‌هایی برای رشد کسب و کار شما',
-        date: '۱۴۰۱/۶/۱۳',
+        date: '۱۳ خرداد ۱۴۰۱',
         folder: 'مالی',
         tags: ['آژانس‌ها', 'آگهی', 'مالی'],
         img: blog2,
@@ -30,7 +30,7 @@ export const useBlog = defineStore({
       {
         id: '3',
         title: 'یک مشاور خوب چه ویژگی هایی دارد ؟',
-        date: '۱۴۰۱/۶/۱۳',
+        date: '۱۳ بهمن ۱۴۰۱',
         folder: 'تجارت',
         tags: ['آگهی', 'تجارت', 'مالی'],
         img: blog3,
@@ -38,7 +38,7 @@ export const useBlog = defineStore({
       {
         id: '4',
         title: 'مشاوره مالی برای افتتاح یک رستوران',
-        date: '۱۴۰۱/۶/۱۳',
+        date: '۱۳ مرداد ۱۴۰۱',
         folder: 'آگهی',
         tags: ['آگهی', 'مالی'],
         img: blog2,
@@ -46,7 +46,7 @@ export const useBlog = defineStore({
       {
         id: '5',
         title: 'مشاوره مالی برای یک استارت آپ خوب',
-        date: '۱۴۰۱/۶/۱۳',
+        date: '۱۳ تیر ۱۴۰۱',
         folder: 'آگهی',
         tags: ['آگهی', 'مشاوره'],
         img: blog4,

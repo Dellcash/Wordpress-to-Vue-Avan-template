@@ -85,6 +85,15 @@ const byCategory = ref([
   },
 ])
 
+// const byCat = reactive({
+//   title: ['مالی', 'سفر و کشف', 'اقتصاد'],
+//   function: (title) => {
+//     const byCategory = useArrayFilter(shop.database, i => i.category === title)
+//     paginate.value = false
+//     return byCategory.value
+//   }
+// })
+
 const search = ref([0, 66500])
 const filterProducts = useArrayFilter(search, item => item.price)
 
@@ -127,7 +136,7 @@ const byLang = reactive({
           </div>
           <div :key="6" class="o36jn2">
             <label for="search" v-for="price in search" :key="price" text="xs gray-600">{{
-                main.toFarsiNumber(main.numberWithCommas((price)))
+            main.toFarsiNumber(main.numberWithCommas((price)))
             }}
               تومان <span>-</span></label>
           </div>
@@ -476,4 +485,5 @@ main {
 </style>
 
 <style src="@vueform/slider/themes/default.css">
+
 </style>
