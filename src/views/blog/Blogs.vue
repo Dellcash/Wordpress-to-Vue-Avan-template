@@ -1,31 +1,8 @@
 <script setup>
 import { useBlog } from '@/stores/blog';
-import { useArrayFilter } from '@vueuse/shared';
+import LeftSide from './LeftSide.vue';
 
 const blogs = useBlog()
-
-const categories = reactive({
-  title: ['آگهی', 'مالی', 'صدمه شخصی', 'تجارت'],
-  activeCategory: '',
-  function: (title) => {
-    categories.activeCategory = title
-    return blogs.blogs = useArrayFilter(blogs.blogs, blog => blog.folder === title)
-  }
-})
-
-const archive = reactive({
-  date: blogs.blogs.forEach(dates => {
-    return dates.date
-  }),
-  function: (date) => {
-    archive.date = date
-    return blogs.blogs = useArrayFilter(blogs.blogs, blog => blog.date === archive.date)
-  }
-})
-const date = blogs.blogs.forEach(dates => {
-  dates.date;
-})
-console.log(date);
 </script>
 
 <template>
@@ -39,73 +16,35 @@ console.log(date);
 
           <div class="duyn5k">
             <div>
-              <div i-carbon-calendar-heat-map w5 h5 />
+              <div i-carbon-calendar-heat-map />
               <h6>{{ blog.date }}</h6>
             </div>
 
             <div>
-              <div i-carbon-folder w5 h5 />
+              <div i-carbon-folder />
               <h6>{{ blog.folder }}</h6>
             </div>
 
             <div>
-              <div i-carbon-tag text-black w5 h5 />
+              <div i-carbon-tag />
               <h6 v-for="tag in blog.tags" :key="tag">{{ tag }}٬</h6>
             </div>
           </div>
 
           <router-link :to="`/blogs/${blog.id}`">
-            <img :src="blog.img" :alt="blog.title" mt5 mb3 md:wfull>
+            <img :src="blog.img" :alt="blog.title" class="rbco7y">
           </router-link>
-          <p text-xs mb5>{{ blogs.description }}{{ blogs.description }}</p>
-          <router-link :to="`/blogs/${blog.id}`"
-            class="text-white bg-#f26522 px10 py2 text-xs duration-250 hover:bg-#00387a">ادامه
+          <p class="k3agm6">{{ blogs.description }}{{ blogs.description }}</p>
+          <router-link :to="`/blogs/${blog.id}`" class="p6ol4n">ادامه
             مطلب</router-link>
         </div>
       </div>
 
-      <aside class="hidden xl:block bg-white col-span-2 py3 px2 space-y-7">
-        <div space-y-7>
-          <h1 text-sm tracking-1px>نوشته‌های اخیر</h1>
-
-          <div space-y-3 border-t-4 border-stone-500 pt2>
-            <div v-for="blog in blogs.blogs" :key="blog" flex space-x-reverse space-x3>
-              <router-link :to="`/blogs/${blog.id}`">
-                <img :src="blog.img" :alt="blog.title" w30 object-cover h-3rem>
-              </router-link>
-
-              <div class="[&_h6]:text-12px wfull">
-                <h6>{{ blog.title }}</h6>
-                <h6>{{ blog.date }}</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div space-y-7>
-          <h1 text-sm tracking-1px>دسته بندی‌ها</h1>
-
-          <div flex flex-col items-start space-y-1 border-t-4 border-stone-500 pt2>
-            <button v-for="(category, index) in categories.title" :key="index" @click="categories.function(category)"
-              :class="{ 'font-bold': category === categories.activeCategory }" text-xs>{{ category }}</button>
-          </div>
-        </div>
-
-        <div space-y-7>
-          <h1 text-sm tracking-1px>بایگانی</h1>
-
-          <div flex flex-col items-start space-y-1 border-t-4 border-stone-500 pt2>
-            <button v-for="date in blogs.blogs" :key="date" @click="blogs.blogs=archive.function(date)" disabled text-xs
-              opacity-50>{{
-              date.date
-              }}</button>
-          </div>
-        </div>
-      </aside>
+      <LeftSide />
     </section>
   </main>
 </template>
-
+          
 <style lang="scss" scoped>
 main {
   --un-bg-opacity: 1;
@@ -196,6 +135,11 @@ main {
               margin-right: calc(0.5rem * var(--un-space-x-reverse));
               --un-space-x-reverse: 1;
             }
+
+            div {
+              height: 1.25rem;
+              width: 1.25rem;
+            }
           }
 
           :nth-child(2) {
@@ -208,6 +152,11 @@ main {
               margin-left: calc(0.5rem * calc(1 - var(--un-space-x-reverse)));
               margin-right: calc(0.5rem * var(--un-space-x-reverse));
               --un-space-x-reverse: 1;
+            }
+
+            div {
+              height: 1.25rem;
+              width: 1.25rem;
             }
           }
 
@@ -226,6 +175,45 @@ main {
             @screen sm {
               overflow: unset;
             }
+
+            div {
+              height: 1.25rem;
+              width: 1.25rem;
+            }
+          }
+        }
+
+        .rbco7y {
+          margin-bottom: 0.75rem;
+          margin-top: 1.25rem;
+
+          @screen md {
+            width: 100%;
+          }
+        }
+
+        .k3agm6 {
+          margin-bottom: 1.25rem;
+          font-size: 0.75rem;
+          line-height: 1rem;
+        }
+
+        .p6ol4n {
+          --un-bg-opacity: 1;
+          background-color: rgba(242, 101, 34, var(--un-bg-opacity));
+          padding-left: 2.5rem;
+          padding-right: 2.5rem;
+          padding-top: 0.5rem;
+          padding-bottom: 0.5rem;
+          font-size: 0.75rem;
+          line-height: 1rem;
+          --un-text-opacity: 1;
+          color: rgba(255, 255, 255, var(--un-text-opacity));
+          transition-duration: 250ms;
+
+          &:hover {
+            --un-bg-opacity: 1;
+            background-color: rgba(0, 56, 122, var(--un-bg-opacity));
           }
         }
       }
@@ -233,3 +221,4 @@ main {
   }
 }
 </style>
+

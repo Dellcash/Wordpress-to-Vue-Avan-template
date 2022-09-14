@@ -9,12 +9,12 @@ const title = useTitle()
 
 const item = blog.getBlog(route.params.id)
 onMounted(() => {
-  title.value = `${item.title} | فروشگاه آوان`
+    title.value = `${item.title} | فروشگاه آوان`
 })
 </script>
 
 <template>
-  <div>{{ item.title }}</div>
+    <div>{{ item.title }}</div>
 </template>
 
 <style lang="scss" scoped>

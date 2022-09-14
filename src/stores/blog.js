@@ -30,7 +30,7 @@ export const useBlog = defineStore({
       {
         id: '3',
         title: 'یک مشاور خوب چه ویژگی هایی دارد ؟',
-        date: '۱۳ بهمن ۱۴۰۱',
+        date: '۱۳ خرداد ۱۴۰۱',
         folder: 'تجارت',
         tags: ['آگهی', 'تجارت', 'مالی'],
         img: blog3,
@@ -38,7 +38,7 @@ export const useBlog = defineStore({
       {
         id: '4',
         title: 'مشاوره مالی برای افتتاح یک رستوران',
-        date: '۱۳ مرداد ۱۴۰۱',
+        date: '۱۳ تیر ۱۴۰۱',
         folder: 'آگهی',
         tags: ['آگهی', 'مالی'],
         img: blog2,
