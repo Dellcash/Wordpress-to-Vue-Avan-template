@@ -20,16 +20,6 @@ const archive = reactive({
         return blogs.blogs = useArrayFilter(blogs.blogs, blog => blog.date === archive.date)
     }
 })
-
-// const filterDate = computed(() => {
-//   return useArrayFilter(blogs.blogs, blog => blog.date === '')
-// })
-const data_filter = computed(() => {
-    blogs.blogs.map((element) => {
-        return { ...element, subElements: element.tags.filter((subElement) => console.log(subElement)) }
-    })
-})
-data_filter.value
 </script>
 
 <template>
