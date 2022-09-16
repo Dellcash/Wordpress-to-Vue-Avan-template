@@ -70,6 +70,12 @@ const router = createRouter({
       name: 'blog',
       component: () => import('../views/blog/Blog.vue'),
       meta: { title: '. . .' }
+    },
+    {
+      path: '/contact',
+      name: 'Contact',
+      component: () => import('../views/Contact.vue'),
+      meta: { title: 'تماس' }
     }
   ]
 })

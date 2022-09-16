@@ -55,7 +55,7 @@ const archive = reactive({
             <h1>بایگانی</h1>
 
             <div>
-                <button v-for="date in blogs.blogs" :key="date" @click="blogs.blogs=archive.function(date)" disabed
+                <button v-for="date in blogs.blogs" :key="date" @click="blogs.blogs=archive.function(date)" disabled 
                     text-xs opacity-50>{{date.date}}</button>
             </div>
         </div>
